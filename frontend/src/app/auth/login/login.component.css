@@ -1,0 +1,77 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    /* background: linear-gradient(90deg ,rgba(2,0,36,1) 0%,rgb(255, 213, 0)100%); */
+    font-family: 'Poppins',sans-serif;
+    background-image:url('src/assets/images/BG_for_login.jpeg'); 
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+}
+
+form{
+    width: 24%;
+    background-color:white ;
+    padding: 50px;
+    /* border: black solid;
+    border-width:1px ; */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, .3);
+    border-radius: 20px;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+}
+.btn-primary{
+    width: 100%;
+    border: none;
+    border-radius: 50px;
+    background:linear-gradient(90deg,black,orange,black);
+    background-size: 200%;
+    
+}
+.btn-primary:hover {
+    animation: animbutton 4s  linear infinite;
+}
+@keyframes animbutton {
+    0%{
+        background-position-x: 0%;
+    }
+    100%{
+        background-position-x: 200%;
+    }
+}
+/* .btn-primary :hover{
+    width: 100%;
+    border: none;
+    border-radius: 50px;
+    background-color: orange;
+} */
+.form-control{
+    color: rgba(0, 0, 0, .42);
+    border-bottom-color: rgba(0, 0, 0, .42);
+    box-shadow: none !important;
+    border: none;
+    border-bottom: 1px solid;
+    border-radius: 4px 4px 0 0;
+}
+h4{
+    font-size: 2rem !important;
+    font-weight: 700;
+}
+.form-label{
+    font-family: 800 !important;
+}
+
+@media only screen and (max-width:600px){
+    form{
+        width:100% !important;
+    }
+    body{
+        width:100% !important;
+        
+    }
+}
