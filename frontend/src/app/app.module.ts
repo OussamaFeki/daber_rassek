@@ -5,12 +5,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { CreatecardasclientComponent } from './client&freelancer/createcardasclient/createcardasclient.component';
+import { CreatecardasFreelancerComponent } from './client&freelancer/createcardas-freelancer/createcardas-freelancer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    CreatecardasclientComponent,
+    CreatecardasFreelancerComponent
   ],
   imports: [
     BrowserModule,
