@@ -1,0 +1,110 @@
+body {
+    background-image: url('background-image.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-container {
+    
+    padding: 2rem;
+    border-radius: 10px;
+  
+    width: 300px;
+}
+
+h1 {
+     position: relative;
+	top: -60px;
+  left: 260px;
+    margin-bottom: 1rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+	 position: relative;
+	top: -60px;
+  left: 260px;
+}
+form i {
+    margin-left: -30px;
+    cursor: pointer;
+}
+label {
+    margin-bottom: 0.5rem;
+}
+
+input {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 0.5rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.Signup-container {
+    
+    padding: 2rem;
+    border-radius: 10px;
+  
+    width: 300px;
+}
+
+h1 {
+     position: relative;
+	top: -60px;
+  left: 260px;
+    margin-bottom: 1rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+	 position: relative;
+	top: -60px;
+  left: 260px;
+}
+form i {
+    margin-left: -30px;
+    cursor: pointer;
+}
+label {
+    margin-bottom: 0.5rem;
+}
+
+input {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 0.5rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
