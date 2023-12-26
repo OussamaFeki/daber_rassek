@@ -1,0 +1,131 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color:#E4F4FD
+}
+
+nav {
+  position: fixed;
+  width: 100%;
+  z-index: 998;
+  background-color: #A1B9A3;
+  display: flex;
+  justify-content: flex-end; /* Align the button to the right */
+  padding: 10px; /* Optional padding for the nav */
+}
+
+button {
+  background-color: #3E8243; /* Button background color */
+  border: none;
+  padding: 8px 16px;
+  margin-left: 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+
+}
+button:hover {
+  background-color: #E4F4FD; /* Button background color on hover */
+}
+.connect-link {
+  height: 30px;
+  color:#E4F4FD; /* Change the color of the text in the button */
+}
+
+.connect-link:hover {
+  color:#3E8243; /* Change the color on hover */
+}
+p {
+  /* definitionforwebsite */
+
+position: absolute;
+width: 1000px;
+height: 320px;
+left: 190px;
+top: 144px;
+
+font-family: 'Aksara Bali Galang';
+font-style: normal;
+font-weight: 100;
+font-size: 20px;
+line-height: 50px;
+/* or 200% */
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: 0.05em;
+
+color: #000000;
+
+
+}
+h2 {
+   
+
+position: absolute;
+width: 1000px;
+height: 30px;
+left: 220px;
+top: 75px;
+
+font-family: 'Concert One';
+font-style: normal;
+font-weight: 400;
+font-size: 50px;
+line-height: 300px;
+/* or 286% */
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #3E8243;
+
+}
+
+/* ... Vos styles CSS existants ... */
+.image0 {
+  z-index: 999;
+  width: 60px; /* Ajustez la taille de l'image 1 */
+  height:55px;
+  transform: rotate(0deg); /* Rotation de l'image 1 */
+  position: absolute; /* Position absolue pour placer l'image 1 */
+  top: 0px; /* Décalage par rapport au haut */
+  left: 35px; /* Décalage par rapport à la gauche */
+}
+
+
+.image1 {
+  max-width: 55%; /* Ajustez la taille de l'image 1 */
+  height: 600px;
+  transform: rotate(0deg); /* Rotation de l'image 1 */
+  position: absolute; /* Position absolue pour placer l'image 1 */
+  top: 250px; /* Décalage par rapport au haut */
+  left: 900px; /* Décalage par rapport à la gauche */
+}
+
+.image2 {
+  max-width: 35%; /* Ajustez la taille de l'image 2 */
+  height: auto;
+  transform: rotate(-34deg); /* Rotation de l'image 2 */
+  position: absolute; /* Position absolue pour placer l'image 2 */
+  top: -20px; /* Décalage par rapport au haut */
+  left: 1150px; /* Décalage par rapport à la droite */
+  position: relative;
+  z-index: -1; /* Pour placer l'image en arrière-plan */
+}
+
+.image3 {
+  max-width: 35%; /* Ajustez la taille de l'image 3 */
+  height: auto;
+  transform: rotate(20deg); /* Rotation de l'image 3 */
+  position: absolute; /* Position absolue pour placer l'image 3 */
+  bottom: 50px; /* Décalage par rapport au bas */
+  left: 0px; /* Centrage horizontal */
+  transform-origin: center center; /* Centrage autour du centre */
+  transform: translateX(-10%) rotate(45deg); /* Décalage horizontal et rotation de l'image 3 */
+}
+
+/* ... Autres styles pour la responsivité (optionnel) ... */
+
