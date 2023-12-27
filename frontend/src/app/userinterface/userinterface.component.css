@@ -1,0 +1,50 @@
+body{
+    background: #E4F4FD;
+    height: 100%;
+}
+header{
+    position: fixed;
+    background-color: #A1B9A3;
+    width: 100%;
+    height: 50px;
+    position: relative;
+}
+#nav-list .t {
+    text-decoration: none;
+    display: inline-block;
+    margin-left:50px ;
+    
+}
+#nav-list .opt{
+    margin-left:0px ;
+}
+nav{
+    float: left;
+    height: 50px;
+    max-width: 100%;
+    width: 100%;  
+}
+
+#nav-list{
+    list-style: none;
+    margin-left: 300px;
+    margin-top: 3px;
+}
+.forpopover{
+    position: relative;
+    margin-right: 35px; /* Reset margin for the last item */
+    margin-left: auto;
+}
+nav img{
+    height: 50px;
+    width: 60px;
+    position: relative;
+}
+
+.content{
+    margin-left: 0px;
+    float: left;
+}
+.form-control{
+    height: 30px;
+}

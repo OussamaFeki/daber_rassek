@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -10,7 +9,11 @@ import { CreatecardasFreelancerComponent } from './client-freelancer/createcarda
 import { CardFreelanceComponent } from './client-freelancer/card-freelance/card-freelance.component';
 import { CardClientsComponent } from './client-freelancer/card-clients/card-clients.component';
 import { HomepageComponent } from './homepage/homepage.component';
-
+import { UserinterfaceComponent } from './userinterface/userinterface.component';
+import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -21,11 +24,16 @@ import { HomepageComponent } from './homepage/homepage.component';
     CreatecardasFreelancerComponent,
     CardFreelanceComponent,
     CardClientsComponent,
-    HomepageComponent
+    HomepageComponent,
+    UserinterfaceComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    RouterModule,
+    NgbModule,
+    NgbPopoverModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

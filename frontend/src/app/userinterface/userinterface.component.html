@@ -1,0 +1,54 @@
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <img src="../../assets/images/Home.png" alt=""/>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav" id="nav-list">
+                    <li class="nav-item t"><button  #button type="button"  class="btn btn-light" placement="bottom" [ngbPopover]="managecard">manage card</button></li> 
+                    <ng-template #managecard class="contentpop">
+                        <a routerLink="/addclientcard"><button class="btn" ><i class="bi bi-plus-square"> </i> add Client Card</button></a>
+                        <a routerLink='/addfreelancercard'><button class="btn" ><i class="bi bi-plus-square"> </i> add Freelancer Card</button></a>
+                        
+                      </ng-template>
+                    <li class="nav-item t">
+                        <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
+                    </li>
+                    <li class="nav-item opt">
+                        <select class="form-select form-select-sm"  aria-label="Large select example">
+                            <option selected>All</option>
+                            <option value="1">freelancer</option>
+                            <option value="2">Client</option>
+                          </select>
+                    </li>
+                </ul>
+                <div class="forpopover">
+                    <button #button type="button" class="btn" placement="bottom" [ngbPopover]="popoverContent" >
+                      <i class="bi bi-three-dots-vertical"></i>
+                    </button>
+                    
+                    <!-- Popover Content Template -->
+                    <ng-template #popoverContent class="contentpop">
+                      <button class="btn">Profile</button>
+                      <button class="btn">Setting</button>
+                      <button class="btn">logout</button>
+                    </ng-template>
+                  </div>
+                  
+            </div>
+            
+            
+        </nav>
+        
+    </header>
+    <div class="content">
+        
+        <router-outlet></router-outlet>
+    </div>
+     
+    
+      
+</body>
+<script>
+    const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+    const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+</script>

@@ -5,13 +5,19 @@ import { CreatecardasclientComponent } from './client-freelancer/createcardascli
 import { CreatecardasFreelancerComponent } from './client-freelancer/createcardas-freelancer/createcardas-freelancer.component';
 import { CardClientsComponent } from './client-freelancer/card-clients/card-clients.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { UserinterfaceComponent } from './userinterface/userinterface.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 const routes: Routes = [
-  {path:'',component:HomepageComponent},
-  {path:'login',component:LoginComponent},
+
   {path:'addclientcard',component:CreatecardasclientComponent},
   {path:'addfreelancercard',component:CreatecardasFreelancerComponent},
-  {path:'card-client',component:CardClientsComponent}
+  {path:'card-client',component:CardClientsComponent},
+  {path:'',component:HomepageComponent},
+  {path:'login',component:LoginComponent},
+  {path:'signup',component:SignupComponent},
+  {path:'user',component:UserinterfaceComponent}
+  
 ];
 
 @NgModule({
