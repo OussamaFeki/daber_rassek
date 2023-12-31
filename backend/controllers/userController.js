@@ -21,7 +21,7 @@ const userController = {
   // Sign up a new user
   signUp: async (req, res) => {
     try {
-      const { name, firstname, email, password, birthday, gender, role, needs, availability, picture } = req.body;
+      const {email, password} = req.body;
 
       // Check if the user already exists
       const existingUser = await User.findOne({ email });
@@ -34,16 +34,8 @@ const userController = {
 
       // Create a new user
       const newUser = new User({
-        name,
-        firstname,
         email,
         password: hashedPassword,
-        birthday,
-        gender,
-        role,
-        needs,
-        availability,
-        picture,
       });
 
       await newUser.save();
