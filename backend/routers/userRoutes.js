@@ -8,9 +8,9 @@ router.post('/signup', userController.signUp);
 // Log in a user
 router.post('/login', userController.logIn);
 
-// Get user profile
-router.get('/profile', authenticateToken, userController.getProfile);
-
+// Get ClientCard
+router.get('/getclientCard', authenticateToken, userController.getclientCard);
+router.get('/getfreelancerCard',authenticateToken,userController.getfreelancerCard)
 // Update user profile
 router.put('/profile', authenticateToken, userController.updateProfile);
 
