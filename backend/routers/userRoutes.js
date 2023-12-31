@@ -8,6 +8,9 @@ router.post('/signup', userController.signUp);
 // Log in a user
 router.post('/login', userController.logIn);
 
+// Add Freelancer Card
+router.post('/addfreelancercard', authenticateToken, userController.addCardFreelancer);
+
 // Get ClientCard
 router.get('/getclientCard', authenticateToken, userController.getclientCard);
 router.get('/getfreelancerCard',authenticateToken,userController.getfreelancerCard)

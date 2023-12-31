@@ -167,6 +167,54 @@ const userController = {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   },
+  // Add freelancer card
+addCardFreelancer: async (req, res) => {
+  try {
+    const {
+      name,
+      firstname,
+      birthday,
+      gender,
+      identityCardNumber,
+      phoneNumber,
+      email,
+      role,
+      availability,
+      picture,
+    } = req.body;
+
+    // Assuming you have middleware that extracts user information from the token
+    // and attaches it to the request (e.g., req.user)
+    const user = req.user;
+
+    // Update freelancer card information
+    user.name = name || user.name;
+    user.firstname = firstname || user.firstname;
+    user.birthday = birthday || user.birthday;
+    user.gender = gender || user.gender;
+    user.identityCardNumber = identityCardNumber || user.identityCardNumber;
+    user.phoneNumber = phoneNumber || user.phoneNumber;
+    user.role = role || user.role;
+    user.availability = availability || user.availability;
+    user.picture = picture || user.picture;
+
+    await user.save();
+
+    res.status(200).json({
+      name: user.name,
+      firstname: user.firstname,
+      email: user.email,
+      birthday: user.birthday,
+      gender: user.gender,
+      role: user.role,
+      availability: user.availability,
+      picture: user.picture,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+},
 };
 
 module.exports = userController;
