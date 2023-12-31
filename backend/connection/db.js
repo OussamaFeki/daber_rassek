@@ -1,14 +1,32 @@
-const { MongoClient } = require('mongodb');
+// db.js
+const mongoose = require('mongoose');
 require('dotenv').config();
-const client = new MongoClient(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
-async function connectToMongoDB() {
-  try {
-    await client.connect();
-    console.log('Connected to MongoDB');
-  } catch (error) {
-    console.error('Error connecting to MongoDB:', error);
-  }
+const uri = process.env.MONGODB_URI;
+const options = {
+  serverSelectionTimeoutMS: 5000,
+};
+
+mongoose.connect(uri, options);
+
+const db = mongoose.connection;
+
+db.on('error', (error) => {
+  console.error('Error connecting to MongoDB:', error);
+});
+
+db.once('open', () => {
+  console.log('Connected to MongoDB');
+});
+
+db.on('disconnected', () => {
+  console.log('Disconnected from MongoDB');
+});
+
+async function disconnectFromMongoDB() {
+  await mongoose.disconnect();
+  console.log('Disconnected from MongoDB');
+  process.exit(0); // Optionally exit the process after disconnecting
 }
 
-module.exports = { connectToMongoDB, client };
+module.exports = { disconnectFromMongoDB, mongoose, db };
