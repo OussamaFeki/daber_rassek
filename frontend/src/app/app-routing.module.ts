@@ -7,7 +7,6 @@ import { CardClientsComponent } from './client-freelancer/card-clients/card-clie
 import { HomepageComponent } from './homepage/homepage.component';
 import { UserinterfaceComponent } from './userinterface/userinterface.component';
 import { SignupComponent } from './auth/signup/signup.component';
-
 const routes: Routes = [
 
   {path:'addclientcard',component:CreatecardasclientComponent},

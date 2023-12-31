@@ -14,7 +14,7 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
-
+import {NgbDatepickerModule} from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +34,7 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
     RouterModule,
     NgbModule,
     NgbPopoverModule,
+    NgbDatepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
