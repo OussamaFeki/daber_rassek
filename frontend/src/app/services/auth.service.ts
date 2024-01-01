@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable,TemplateRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class AuthService {
   private apiUrl = 'http://localhost:3000/user';
   private tokenKey = 'oussama';
+  toasts: any[] = [];
   constructor(private http: HttpClient) {}
 
   signUp(user: any): Observable<any> {
@@ -33,4 +34,15 @@ export class AuthService {
     // Remove the token from local storage
     this.removeAuthToken();
   }
+  show(textOrTpl: string | TemplateRef<any>, options: any = {}) {
+		this.toasts.push({ textOrTpl, ...options });
+	}
+
+	remove(toast:any) {
+		this.toasts = this.toasts.filter((t) => t !== toast);
+	}
+
+	clear() {
+		this.toasts.splice(0, this.toasts.length);
+	}
 }
