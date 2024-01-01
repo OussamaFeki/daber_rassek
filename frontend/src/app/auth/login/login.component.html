@@ -1,15 +1,17 @@
 <body>
   <div class="login-container">
       <h1>Log in</h1>
-      <form>
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required>
-          
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="password" required>
-          <p>do you not have an account ?<a routerLink="/signup">sign up </a></p>
-          <button type="submit">Login</button>
-      </form>
+      <form [formGroup]="signinForm" (submit)="signIn()">
+        <label for="email">Email:</label>
+        <input type="email" id="email" formControlName="email" required>
+      
+        <label for="password">Password:</label>
+        <input type="password" id="password" formControlName="password" required>
+      
+        <p>Don't have an account? <a [routerLink]="['/signup']">Sign up</a></p>
+        
+        <button type="submit" [disabled]="signinForm.invalid">Login</button>
+      </form>      
   </div>
 <script>
       const togglePassword = document.querySelector("#togglePassword");

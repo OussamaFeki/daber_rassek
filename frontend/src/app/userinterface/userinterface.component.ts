@@ -1,5 +1,7 @@
 import { Component , ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { ModalDismissReasons, NgbDatepickerModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-userinterface',
   templateUrl: './userinterface.component.html',
@@ -7,7 +9,7 @@ import { ModalDismissReasons, NgbDatepickerModule, NgbModal } from '@ng-bootstra
 })
 export class UserinterfaceComponent {
   closeResult = '';
-	constructor(private modalService: NgbModal) {}
+	constructor(private modalService: NgbModal,private authService:AuthService,private router: Router) {}
 
 	open(content:any) {
 		this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
@@ -29,4 +31,11 @@ export class UserinterfaceComponent {
 			return `with: ${reason}`;
 		}
 	}
+	logout(): void {
+		// Call the logout method from AuthService
+		this.authService.logout();
+	
+		// Optionally, navigate to the login page or another page
+		this.router.navigate(['/login']); // Update with your login route
+	  }
 }

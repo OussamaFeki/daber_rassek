@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CreatecardasclientComponent } from './client-freelancer/createcardasclient/createcardasclient.component';
 import { CreatecardasFreelancerComponent } from './client-freelancer/createcardas-freelancer/createcardas-freelancer.component';
 import { CardFreelanceComponent } from './client-freelancer/card-freelance/card-freelance.component';
@@ -15,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import {NgbDatepickerModule} from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +36,9 @@ import {NgbDatepickerModule} from '@ng-bootstrap/ng-bootstrap';
     RouterModule,
     NgbModule,
     NgbPopoverModule,
-    NgbDatepickerModule
+    NgbDatepickerModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
