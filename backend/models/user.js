@@ -11,9 +11,9 @@ const userSchema = new mongoose.Schema({
   time:{ type: String },
   needs: [{ type: String }], 
   availability: { type: String },
-  picture: { type: String }
-  
-  
+  picture: { type: String },
+  phone:{type: Number},
+  city: { type: String },
 });
 
 const User = mongoose.model('User', userSchema);

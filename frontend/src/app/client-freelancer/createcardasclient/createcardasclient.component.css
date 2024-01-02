@@ -46,3 +46,17 @@
     float: right;
     width: 30%;
 }
+Input#file {
+    Display: none;
+}
+Label#pic {
+    Height:  40px;
+    Width: 150px;
+    Border-radius: 60px;
+    Border: 1px dashed #999;
+    text-align: center;
+}
+Label#pic:hover {
+      Color: #de0611;
+      Border: 1px dashed #de0611;
+}

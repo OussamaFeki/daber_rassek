@@ -7,6 +7,7 @@ import { CardClientsComponent } from './client-freelancer/card-clients/card-clie
 import { HomepageComponent } from './homepage/homepage.component';
 import { UserinterfaceComponent } from './userinterface/userinterface.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { AuthGuard } from './guards/auth.guard';
 const routes: Routes = [
 
   {path:'addclientcard',component:CreatecardasclientComponent},
@@ -15,7 +16,7 @@ const routes: Routes = [
   {path:'',component:HomepageComponent},
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},
-  {path:'user',component:UserinterfaceComponent}
+  {path:'user',component:UserinterfaceComponent,canActivate:[AuthGuard]}
   
 ];
 

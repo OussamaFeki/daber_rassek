@@ -9,7 +9,13 @@ import { Router } from '@angular/router';
 })
 export class UserinterfaceComponent {
   closeResult = '';
-	constructor(private modalService: NgbModal,private authService:AuthService,private router: Router) {}
+  token:any;
+  data:any;
+	constructor(private modalService: NgbModal,private authService:AuthService,private router: Router) {
+		this.token=this.authService.getAuthToken();
+		this.data=this.authService.decodeToken(this.token);
+		console.log(this.data.id);
+	}
 
 	open(content:any) {
 		this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(

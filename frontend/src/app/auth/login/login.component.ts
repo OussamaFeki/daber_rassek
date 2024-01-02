@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnDestroy {
+export class LoginComponent{
   signinForm: FormGroup;
   error:any;
   constructor(private authservice:AuthService,
@@ -37,7 +37,5 @@ export class LoginComponent implements OnDestroy {
       this.toastr.error(this.error);
     });
   }
-  ngOnDestroy(): void {
-		this.authservice.clear();
-	}
+  
 }
