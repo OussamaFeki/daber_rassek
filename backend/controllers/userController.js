@@ -1,7 +1,8 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
-
+const upload =require('../upload/upimg');
+const fs=require("fs");
 // Function to generate a JWT token
 function generateToken(user) {
   const payload = {
@@ -15,6 +16,66 @@ function generateToken(user) {
 
   return jwt.sign(payload, process.env.JWT_SECRET, options);
 }
+// Define the middleware for uploading a single file
+const uploadSingle = upload.single('picture');
+const addCardFreelancerHandler = async (req, res) => {
+  try {
+    const userid = req.user;
+    console.log(userid);   
+    // Continue processing or sending the response
+    uploadSingle(req, res, async (err) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Internal Server Error' });
+      }
+      // Prepare the update data based on request body
+    const updateData = {
+      name: req.body.name,
+      firstname: req.body.firstname,
+      birthday: req.body.birthday,
+      gender: req.body.gender,
+      role: req.body.role,
+      availability: req.body.availability,
+      city: req.body.city,
+    };
+    const previous=await User.findById(userid);
+      // Check if a file is uploaded and update the picture field accordingly
+      if (req.file) {
+        if(previous.picture){
+          const previousImageName = previous.picture.split('/').pop();
+          fs.unlink('./images/'+previousImageName, (err) => {
+            if (err) {
+              console.error('Error deleting previous image:', err);
+            } else {
+              console.log('Previous image deleted successfully');
+            }
+          });
+        }
+        updateData.picture = `http://localhost:3000/picture/${req.file.filename}`;
+      }
+
+      // Fetch the updated user
+      // Use User.updateOne to update the user
+      await User.updateOne({ _id: userid }, updateData);
+      const updatedUser = await User.findById(userid);
+
+      res.status(200).json({
+        name: updatedUser.name,
+        firstname: updatedUser.firstname,
+        email: updatedUser.email,
+        birthday: updatedUser.birthday,
+        gender: updatedUser.gender,
+        role: updatedUser.role,
+        needs: updatedUser.needs,
+        availability: updatedUser.availability,
+        picture: updatedUser.picture,
+      });
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
 
 // Controller methods
 const userController = {
@@ -160,53 +221,9 @@ const userController = {
     }
   },
   // Add freelancer card
-addCardFreelancer: async (req, res) => {
-  try {
-    const {
-      name,
-      firstname,
-      birthday,
-      gender,
-      identityCardNumber,
-      phoneNumber,
-      email,
-      role,
-      availability,
-      picture,
-    } = req.body;
-
-    // Assuming you have middleware that extracts user information from the token
-    // and attaches it to the request (e.g., req.user)
-    const user = req.user;
-
-    // Update freelancer card information
-    user.name = name || user.name;
-    user.firstname = firstname || user.firstname;
-    user.birthday = birthday || user.birthday;
-    user.gender = gender || user.gender;
-    user.identityCardNumber = identityCardNumber || user.identityCardNumber;
-    user.phoneNumber = phoneNumber || user.phoneNumber;
-    user.role = role || user.role;
-    user.availability = availability || user.availability;
-    user.picture = picture || user.picture;
-
-    await user.save();
-
-    res.status(200).json({
-      name: user.name,
-      firstname: user.firstname,
-      email: user.email,
-      birthday: user.birthday,
-      gender: user.gender,
-      role: user.role,
-      availability: user.availability,
-      picture: user.picture,
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-},
+  addCardFreelancer:addCardFreelancerHandler
 };
+
+ 
 
 module.exports = userController;
