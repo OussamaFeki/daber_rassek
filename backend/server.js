@@ -1,4 +1,5 @@
 const express = require('express');
+const { urlencoded } = require('express');
 const app = express();
 const port = 3000;
 const { disconnectFromMongoDB } = require('./connection/db');
@@ -7,6 +8,7 @@ const reviewRoutes = require('./routers/reviewRoutes');
 const userRoutes=require('./routers/userRoutes');
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
+app.use(urlencoded({extended:true}))
 app.use(cors());
 app.get('/', (req, res) => {
   res.send('Hello World!')
@@ -15,9 +17,10 @@ app.get('/', (req, res) => {
  
 
 // Connect to MongoDB
-
+app.use('/image',express.static('images'))
 app.use('/review', reviewRoutes);
 app.use('/user', userRoutes);
+
 // Add your Express routes and middleware here
 
 app.listen(port, () => {

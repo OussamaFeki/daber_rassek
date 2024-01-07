@@ -8,36 +8,36 @@
     <div class="img2"></div>
     <div class="form">
         <h2>Required Information</h2>
-        <form action="">
+        <form [formGroup]="profileForm" (submit)="updateProfile()">
             <div class="mb-4 row">
                 <label for="staticEmail" class="col-sm-5 col-form-label">Name</label>
                 <div class="col-sm-7">
-                  <input type="text"  class="form-control" id="staticEmail">
+                  <input type="text"  class="form-control" formControlName="name" id="staticEmail" required />
                 </div>
             </div>
             <div class="mb-4 row">
                 <label for="staticEmail" class="col-sm-5 col-form-label">First Name</label>
                 <div class="col-sm-7">
-                  <input type="text"  class="form-control" id="staticEmail">
+                  <input type="text"  class="form-control" formControlName="firstname" id="staticEmail" required />
                 </div>
             </div>
             <div class="mb-4 row">
                 <label for="staticEmail" class="col-sm-5 col-form-label">Date of birth :</label>
                 <div class="col-sm-7">
-                    <input type="date" class="form-control" id="birthday">
+                    <input type="date" class="form-control" formControlName="birthday" id="staticEmail" required />
                 </div>
             </div>
             <div class="mb-4 row">
                 <label for="staticEmail" class="col-sm-6 col-form-label">Gender :</label>
                 <div class="col-sm-3 form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                    <input class="form-check-input" type="radio" formControlName="gender" value="male" required/>
                     <label class="form-check-label" for="flexRadioDefault1">
                       Man
                     </label>
                     
                 </div>
                 <div class="col-sm-3 form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                    <input class="form-check-input" type="radio" formControlName="gender" value="female" required>
                     <label class="form-check-label" for="flexRadioDefault2">
                       Women
                     </label>
@@ -45,43 +45,37 @@
                   
             </div>
             <div class="mb-4 row">
-                <label for="staticEmail" class="col-sm-5 col-form-label">Identity card number :</label>
+                <label for="staticEmail" class="col-sm-5 col-form-label">City :</label>
                 <div class="col-sm-7">
-                  <input type="text"  class="form-control" id="staticEmail">
+                  <input type="text"  class="form-control" formControlName="city" id="staticEmail" required />
                 </div>
             </div>
             <div class="mb-4 row">
                 <label for="staticEmail" class="col-sm-5 col-form-label">Phone number :</label>
                 <div class="col-sm-7">
-                  <input type="text"  class="form-control" id="staticEmail">
-                </div>
-            </div>
-            <div class="mb-4 row">
-                <label for="staticEmail" class="col-sm-5 col-form-label">e-mail :</label>
-                <div class="col-sm-7">
-                  <input type="text"  class="form-control" id="staticEmail">
+                  <input type="text"  class="form-control" formControlName="phone" id="staticEmail" required />
                 </div>
             </div>
             <div class="mb-4 row">
                 <label for="staticEmail" class="col-sm-5 col-form-label">Role:</label>
                 <div class="col-sm-7">
-                  <input type="text"  class="form-control" id="staticEmail">
+                  <input type="text"  class="form-control" formControlName="role" id="staticEmail" required />
                 </div>
             </div>
             <div class="mb-4 row">
                 <label for="staticEmail" class="col-sm-5 col-form-label">availability :</label>
                 <div class="col-sm-7">
-                  <input type="text"  class="form-control" id="staticEmail">
+                  <input type="text"  class="form-control" formControlName="availability" id="staticEmail" required />
                 </div>
             </div>
             <div class="mb-4 row">
                 <label for="staticEmail" class="col-sm-5 col-form-label" >picture :</label>
                 <div class="col-sm-7">
-                  <input type="file" id="file"/>
+                  <input type="file" id="file" (change)="onFileSelected($event)"/>
                   <label for="file" id="pic">Upload File</label>
                 </div>
             </div>
-            <button type="button" class="btn btn-success">Confirm</button>
+            <button type="submit" class="btn btn-success">Confirm</button>
         </form>
     </div>
 </body>

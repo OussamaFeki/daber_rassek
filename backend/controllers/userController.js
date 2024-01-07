@@ -51,7 +51,7 @@ const addCardFreelancerHandler = async (req, res) => {
             }
           });
         }
-        updateData.picture = `http://localhost:3000/picture/${req.file.filename}`;
+        updateData.picture = `http://localhost:3000/image/${req.file.filename}`;
       }
 
       // Fetch the updated user
