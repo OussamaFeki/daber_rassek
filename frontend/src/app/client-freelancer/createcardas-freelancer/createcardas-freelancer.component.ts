@@ -19,7 +19,8 @@ export class CreatecardasFreelancerComponent {
       gender: ['', Validators.required],
       role:['', Validators.required],
       availability:['', Validators.required],
-
+      phone:['', Validators.required],
+      city:['', Validators.required]
       // Add other form controls as needed
     });
   }
