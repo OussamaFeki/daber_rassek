@@ -28,7 +28,7 @@
                     
                     <!-- Popover Content Template -->
                     <ng-template #popoverContent class="contentpop">
-                      <button class="btn">Profile</button>
+                      <button class="btn" routerLink="profile">Profile</button>
                       <button class="btn">Setting</button>
                       <button class="btn" (click)="logout()">logout</button>
                     </ng-template>
@@ -41,7 +41,6 @@
         
     </header>
     <div class="content">
-        
         <router-outlet></router-outlet>
     </div>
      

@@ -8,15 +8,19 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { UserinterfaceComponent } from './userinterface/userinterface.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AuthGuard } from './guards/auth.guard';
+import { isloggedGuard } from './guards/islogged.guard';
+import { ProfileComponent } from './userinterface/profile/profile.component';
 const routes: Routes = [
 
-  {path:'addclientcard',component:CreatecardasclientComponent},
-  {path:'addfreelancercard',component:CreatecardasFreelancerComponent},
-  {path:'card-client',component:CardClientsComponent},
+  {path:'addclientcard',component:CreatecardasclientComponent,canActivate:[AuthGuard]},
+  {path:'addfreelancercard',component:CreatecardasFreelancerComponent,canActivate:[AuthGuard]},
+  {path:'card-client',component:CardClientsComponent,canActivate:[AuthGuard]},
   {path:'',component:HomepageComponent},
-  {path:'login',component:LoginComponent},
-  {path:'signup',component:SignupComponent},
-  {path:'user',component:UserinterfaceComponent,canActivate:[AuthGuard]}
+  {path:'login',component:LoginComponent,canActivate:[isloggedGuard]},
+  {path:'signup',component:SignupComponent,canActivate:[isloggedGuard]},
+  {path:'user',component:UserinterfaceComponent,canActivate:[AuthGuard],children:[
+    {path:'profile',component:ProfileComponent}
+  ]}
   
 ];
 

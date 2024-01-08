@@ -18,6 +18,7 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import {NgbDatepickerModule} from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { ProfileComponent } from './userinterface/profile/profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +30,7 @@ import { ToastrModule } from 'ngx-toastr';
     CardClientsComponent,
     HomepageComponent,
     UserinterfaceComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

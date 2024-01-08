@@ -65,7 +65,7 @@
             <div class="mb-4 row">
                 <label for="staticEmail" class="col-sm-5 col-form-label">availability :</label>
                 <div class="col-sm-7">
-                  <input type="text"  class="form-control" formControlName="availability" id="staticEmail" required />
+                  <input type="time"  class="form-control" formControlName="availability" id="staticEmail" required />
                 </div>
             </div>
             <div class="mb-4 row">
@@ -75,7 +75,7 @@
                   <label for="file" id="pic">Upload File</label>
                 </div>
             </div>
-            <button type="submit" class="btn btn-success">Confirm</button>
+            <button type="submit" class="btn btn-success" [disabled]="profileForm.invalid">Confirm</button>
         </form>
     </div>
 </body>

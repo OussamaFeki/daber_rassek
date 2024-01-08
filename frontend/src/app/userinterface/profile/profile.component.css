@@ -1,0 +1,79 @@
+.card-container{
+    width: 400px;
+    height:fit-content;
+    background: #E4F4FD;
+    padding-top: 10px;
+
+}
+img.prof {
+    margin-top: 2px;
+    height: 100px;
+    width: 100px;
+    top: 0%;
+}
+img.etoils{
+    width: 100px;
+    height:20px;
+}
+.logo{
+    height: 30px;
+    width:50px;
+    margin-left:60px ;
+   position: absolute;
+   top: 0%;
+   right: 0%;
+   display: block;
+}
+.image-container {
+    flex: 1 1 40%; /* Half of the container width */
+    overflow: hidden;
+    text-align: center;
+    float: left;
+    margin-right: 20px;
+}
+.para-container{
+    flex: 1 1 40%; /* Half of the container width */
+    margin-left: 100px;
+}
+p{
+    flex: 1 1 30%;
+    
+}
+h6{
+    flex: 1 1 30%;
+    
+    
+}
+.header{
+    border-bottom: black 1px solid;
+    position: relative;
+    text-align: center;
+    height: 30px;
+    width: auto;
+    align-items: flex-end;
+}
+.overlay {
+    position: absolute;
+    top: 30px;
+    left: 319px;
+    width: 17%;
+    height: 62%;
+    background: transparent;
+}
+   .overlay::before {
+    content: "";
+    position: absolute;
+    top: 30px;
+    left: 319px;
+    width: 17%;
+    height: 62%;
+    background: transparent;
+   }
+   i{
+    font-size: 1.5rem;
+    color: #e84a4a;
+    overflow: hidden;
+   }
+   /* .filled {
+    color: gold;
+} */
