@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 
@@ -7,7 +7,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './createcardas-freelancer.component.html',
   styleUrls: ['./createcardas-freelancer.component.css']
 })
-export class CreatecardasFreelancerComponent {
+export class CreatecardasFreelancerComponent implements OnInit  {
   profileForm: FormGroup;
   selectedFile: File | null = null;
   constructor(private userservice:UserService ,private fb: FormBuilder){
@@ -23,6 +23,27 @@ export class CreatecardasFreelancerComponent {
       city:['', Validators.required]
       // Add other form controls as needed
     });
+  }
+  ngOnInit(): void {
+    // Fetch the user's current data and set it in the form
+    this.userservice.getFreelancerCard().subscribe(
+      (user) => {
+        this.profileForm.patchValue({
+          name: user.name,
+          firstname: user.firstname,
+          birthday: user.birthday,
+          gender: user.gender,
+          city: user.city,
+          phone: user.phone,
+          role: user.role,
+          availability: user.availability,
+        });
+      },
+      (error) => {
+        console.error('Failed to fetch user data', error);
+        // Handle error
+      }
+    );
   }
   onFileSelected(event: any): void {
     const file = event.target.files[0];

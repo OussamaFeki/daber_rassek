@@ -1,9 +1,12 @@
 .card-container{
     width: 400px;
-    height:fit-content;
-    background: #E4F4FD;
+    height:max-content;
+    background: white;
     padding-top: 10px;
-
+    padding-bottom:7px ;
+    margin-top: 30%;
+    margin-left: 30%;
+    border-radius: 30px;
 }
 img.prof {
     margin-top: 2px;
@@ -69,11 +72,21 @@ h6{
     height: 62%;
     background: transparent;
    }
-   i{
+   i {
+    position: relative;
+    display: inline-block;
     font-size: 1.5rem;
-    color: #e84a4a;
-    overflow: hidden;
-   }
-   /* .filled {
+    padding-right: 0.1rem;
+    color: #d3d3d3;
+    
+    
+}
+
+.filled {
     color: gold;
-} */
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+}

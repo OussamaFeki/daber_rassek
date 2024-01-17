@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./card-clients.component.css']
 })
 export class CardClientsComponent {
-
+  currentRate = 3.14;
+  ariaValueText(current: number, max: number) {
+		return `${current} out of ${max} hearts`;
+	}
 }

@@ -14,7 +14,7 @@ const routes: Routes = [
 
   {path:'addclientcard',component:CreatecardasclientComponent,canActivate:[AuthGuard]},
   {path:'addfreelancercard',component:CreatecardasFreelancerComponent,canActivate:[AuthGuard]},
-  {path:'card-client',component:CardClientsComponent,canActivate:[AuthGuard]},
+  {path:'card-client',component:CardClientsComponent},
   {path:'',component:HomepageComponent},
   {path:'login',component:LoginComponent,canActivate:[isloggedGuard]},
   {path:'signup',component:SignupComponent,canActivate:[isloggedGuard]},

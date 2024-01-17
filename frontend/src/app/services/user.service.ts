@@ -32,4 +32,12 @@ export class UserService {
 
     return this.http.put(`${this.apiUrl}/addfreelancercard`, formData,{headers});
   }
+  getFreelancerCard(): Observable<any> {
+    const token =localStorage.getItem(this.tokenKey)
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+
+    return this.http.get<any>(`${this.apiUrl}/getfreelancerCard`, { headers });
+  }
 }

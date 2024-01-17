@@ -1,25 +1,35 @@
 <div class="container-fluid card-container">
     <div class="header">
-        <h6>student card </h6>
-        <img src="../../../assets/images/Dabber_Rassek.png" alt="" class="logo">
-        <div class="overlay"></div>
-       
+      <h6>Freelancer Card</h6>
+      <img src="../../../assets/images/Dabber_Rassek.png" alt="" class="logo">
+      <div class="overlay"></div>
     </div>
-    
+  
     <div class="image-container">
-        <img src="../../../assets/images/Rectangle 60.png" alt="" class="prof">
-        <br>
-        <ng-template #t let-fill="fill">
-            <i class="bi-star-fill">
-                <i *ngIf="fill > 0" class="bi-star-fill filled" [style.width.%]="fill"></i>
-            </i>
-        </ng-template>
-        <ngb-rating [starTemplate]="t" [(rate)]="currentRate" [max]="5" [readonly]="true" class="etoils">
-        </ngb-rating>
-        
+      <img [src]="img || '../../../assets/images/default-profile.png'" alt="" class="prof">
+      <br>
+      <ng-template #t let-fill="fill">
+        <i class="bi-star-fill">
+          <i *ngIf="fill > 0" class="bi-star-fill filled" [style.width.%]="fill"></i>
+        </i>
+      </ng-template>
+  
+      <ngb-rating
+        [(rate)]="currentRate"
+        [starTemplate]="t"
+        [readonly]="true"
+        [max]="5"
+      ></ngb-rating>
+      <br>
+      <br>
     </div>
+  
     <div class="para-container">
-        <p>i am + “name”+ +”firstname”+.i am +”age”+.I am available to provide my services +”service” at the following times + ”availibility” .for more information and reservation call me on +”number”.</p>
+      <p>
+        I am {{ freelancerCard.name }} {{ freelancerCard.firstname }}. I am {{ calculateAge(freelancerCard.birthday) }} years old.
+        I am available to provide my services in {{ freelancerCard.availability }}.
+        For more information and reservation, call me on {{ freelancerCard.phone|| 'N/A' }}.
+      </p>
     </div>
-    
-</div>
+  </div>
+  

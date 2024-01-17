@@ -37,6 +37,7 @@ const addCardFreelancerHandler = async (req, res) => {
       role: req.body.role,
       availability: req.body.availability,
       city: req.body.city,
+      phone:req.body.phone
     };
     const previous=await User.findById(userid);
       // Check if a file is uploaded and update the picture field accordingly
@@ -143,18 +144,18 @@ const userController = {
     try {
       // Assuming you have middleware that extracts user information from the token
       // and attaches it to the request (e.g., req.user)
-      const user = req.user;
-
+      const userid = req.user;
+      const user=await User.findById(userid);
       res.status(200).json({
         name: user.name,
         firstname: user.firstname,
-        email: user.email,
         birthday: user.birthday,
         gender: user.gender,
         role: user.role,
-        needs: user.needs,
         availability: user.availability,
         picture: user.picture,
+        phone:user.phone,
+        city:user.city
       });
     } catch (error) {
       console.error(error);
