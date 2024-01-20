@@ -11,6 +11,8 @@ export class UserService {
   private tokenKey = 'oussama';
   //for searsh 
   private searshurl= 'http://localhost:3000/search'
+  //for review
+  private reviewurl= 'http://localhost:3000/users'
   constructor(private http: HttpClient,private auth:AuthService) {
 
   }
@@ -87,5 +89,14 @@ export class UserService {
    // "for search "
    searchUsers(query: string, field: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.searshurl}/users?query=${query}&field=${field}`);
+  }
+  //"for review"
+  //add a rate from client to employee
+  addrate(clientId:string,employeeId:string,rating:any): Observable<any> {
+    const formData = new FormData();
+    formData.append('clientId', clientId);
+    formData.append('employeeId', employeeId);
+    formData.append('rating', rating);
+    return this.http.post(`${this.searshurl}/add`,formData);
   }
 }
