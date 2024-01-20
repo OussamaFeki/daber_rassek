@@ -1,6 +1,7 @@
-<div class="container-fluid card-container">
+<div class="row">
+  <div class="container-fluid card-container" *ngIf="freelancerCard.role">
     <div class="header">
-      <h6>Freelancer Card</h6>
+      <h6>{{freelancerCard.role}}</h6>
       <img src="../../../assets/images/Dabber_Rassek.png" alt="" class="logo">
       <div class="overlay"></div>
     </div>
@@ -27,9 +28,48 @@
     <div class="para-container">
       <p>
         I am {{ freelancerCard.name }} {{ freelancerCard.firstname }}. I am {{ calculateAge(freelancerCard.birthday) }} years old.
-        I am available to provide my services in {{ freelancerCard.availability }}.
+        I am from {{freelancerCard.city}}.I am available to provide my services from {{ formatTime(freelancerCard.availability.from) }} to {{ formatTime(freelancerCard.availability.to) }}.
+        For more information and reservation, call me on {{ freelancerCard.phone }}.
+      </p>      
+    </div>
+  </div>
+  <div class="container-fluid card-container" *ngIf="!(freelancerCard.role)" id="not" routerLink="/addfreelancercard">
+    <div class="icon">
+      <i class="bi bi-plus-circle"></i>
+      <p>Add Employee CARD</p>
+    </div>
+    
+  </div>
+  <div class="container-fluid card-container" *ngIf="freelancerCard.needs && freelancerCard.needs.length > 0">
+    <div class="header">
+      <h6>CLIENT Card</h6>
+      <img src="../../../assets/images/Dabber_Rassek.png" alt="" class="logo">
+      <div class="overlay"></div>
+    </div>
+  
+    <div class="image-container">
+      <img [src]="img || '../../../assets/images/default-profile.png'" alt="" class="prof">
+    </div>
+  
+    <div class="para-container">
+      <p>
+        I am {{ freelancerCard.name }} {{ freelancerCard.firstname }}. I am {{ calculateAge(freelancerCard.birthday) }} years old.
+        I search for 
+        <ng-container *ngIf="freelancerCard.needs && freelancerCard.needs.length > 0; else noNeeds">
+          <span *ngFor="let need of freelancerCard.needs; let last = last">
+            {{ need }}{{ last ? '' : ', ' }}
+          </span>.
+        </ng-container>
+        <ng-template #noNeeds>N/A.</ng-template>
         For more information and reservation, call me on {{ freelancerCard.phone|| 'N/A' }}.
       </p>
     </div>
   </div>
-  
+  <div class="container-fluid card-container" *ngIf="!(freelancerCard.needs.length > 0)" id="not" routerLink="/addclientcard">
+    <div class="icon">
+      <i class="bi bi-plus-circle"></i>
+      <p>Add CLIENT CARD</p>
+    </div>
+    
+  </div>
+</div>

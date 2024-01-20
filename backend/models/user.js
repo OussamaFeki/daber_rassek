@@ -8,9 +8,15 @@ const userSchema = new mongoose.Schema({
   birthday: { type: Date }, 
   gender: { type: String, enum: ['male','female'] },
   role: { type: String},
-  time:{ type: String },
+  time: {
+    from: { type: String },
+    to: { type: String }
+  },
   needs: [{ type: String }], 
-  availability: { type: String },
+  availability: {
+    from: { type: String },
+    to: { type: String }
+  },
   picture: { type: String },
   phone:{type: Number},
   city: { type: String },

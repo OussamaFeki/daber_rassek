@@ -17,10 +17,11 @@ export class CreatecardasFreelancerComponent implements OnInit  {
       firstname: ['', Validators.required],
       birthday: ['', Validators.required],
       gender: ['', Validators.required],
-      role:['', Validators.required],
-      availability:['', Validators.required],
+      role:['', Validators.required],  
       phone:['', Validators.required],
-      city:['', Validators.required]
+      city:['', Validators.required],
+      from: ['', Validators.required],
+      to: ['', Validators.required],
       // Add other form controls as needed
     });
   }
@@ -36,7 +37,8 @@ export class CreatecardasFreelancerComponent implements OnInit  {
           city: user.city,
           phone: user.phone,
           role: user.role,
-          availability: user.availability,
+          from:user.availability.from,
+          to:user.availability.to
         });
       },
       (error) => {
@@ -51,6 +53,8 @@ export class CreatecardasFreelancerComponent implements OnInit  {
   }
   updateProfile(): void {
     const user = this.profileForm.value;
+    console.log(user.from);
+    console.log(this.profileForm.value)
     this.userservice.updateProfile(user, this.selectedFile).subscribe(
       (response) => {
         console.log('Profile updated successfully', response);

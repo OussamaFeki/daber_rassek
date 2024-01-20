@@ -3,6 +3,8 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const upload =require('../upload/upimg');
 const fs=require("fs");
+//prendre le controler de review 
+const reviewController = require('../controllers/reviewController');
 // Function to generate a JWT token
 function generateToken(user) {
   const payload = {
@@ -18,6 +20,7 @@ function generateToken(user) {
 }
 // Define the middleware for uploading a single file
 const uploadSingle = upload.single('picture');
+// handler of Aad or Edit a Freelancer Card
 const addCardFreelancerHandler = async (req, res) => {
   try {
     const userid = req.user;
@@ -35,10 +38,80 @@ const addCardFreelancerHandler = async (req, res) => {
       birthday: req.body.birthday,
       gender: req.body.gender,
       role: req.body.role,
-      availability: req.body.availability,
+      availability: {
+        from: req.body.from,
+        to: req.body.to
+      },
+      phone:req.body.phone,
       city: req.body.city,
-      phone:req.body.phone
     };
+    const previous=await User.findById(userid);
+      // Check if a file is uploaded and update the picture field accordingly
+      if (req.file) {
+        if(previous.picture){
+          const previousImageName = previous.picture.split('/').pop();
+          fs.unlink('./images/'+previousImageName, (err) => {
+            if (err) {
+              console.error('Error deleting previous image:', err);
+            } else {
+              console.log('Previous image deleted successfully');
+            }
+          });
+        }
+        updateData.picture = `http://localhost:3000/image/${req.file.filename}`;
+      }
+
+      // Fetch the updated user
+      // Use User.updateOne to update the user
+      console.log(req.body.from)
+      await User.updateOne({ _id: userid }, updateData);
+      const updatedUser = await User.findById(userid);
+
+      res.status(200).json({
+        name: updatedUser.name,
+        firstname: updatedUser.firstname,
+        email: updatedUser.email,
+        birthday: updatedUser.birthday,
+        gender: updatedUser.gender,
+        role: updatedUser.role,
+        needs: updatedUser.needs,
+        availability: updatedUser.availability,
+        picture: updatedUser.picture,
+      });
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+// handler of Aad or Edit a Client Card
+const addClientCardHandler = async (req, res) => {
+  try {
+    const userid = req.user;
+    // console.log(userid);   
+    // Continue processing or sending the response
+    uploadSingle(req, res, async (err) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Internal Server Error' });
+      }
+      //voir le req body
+      console.log(req.body.needs)
+      // Prepare the update data based on request body
+    
+      const updateData = {
+        name: req.body.name,
+        firstname: req.body.firstname,
+        birthday: req.body.birthday,
+        gender: req.body.gender,
+        needs: req.body.needs,
+        time: {
+          from: req.body.from,
+          to: req.body.to
+        },
+        city: req.body.city,
+        phone:req.body.phone
+      };
     const previous=await User.findById(userid);
       // Check if a file is uploaded and update the picture field accordingly
       if (req.file) {
@@ -77,7 +150,6 @@ const addCardFreelancerHandler = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
-
 // Controller methods
 const userController = {
   // Sign up a new user
@@ -139,13 +211,15 @@ const userController = {
     }
   },
 
-  // Get user profile
+  // Get freelancer card 
   getfreelancerCard: async (req, res) => {
     try {
       // Assuming you have middleware that extracts user information from the token
       // and attaches it to the request (e.g., req.user)
       const userid = req.user;
       const user=await User.findById(userid);
+      // prendre le moyen de rate de review 
+      const rate=await reviewController.getmean(userid)
       res.status(200).json({
         name: user.name,
         firstname: user.firstname,
@@ -155,19 +229,21 @@ const userController = {
         availability: user.availability,
         picture: user.picture,
         phone:user.phone,
-        city:user.city
+        city:user.city,
+        rate
       });
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
   },
+  //Get ClientCard
   getclientCard: async (req, res) => {
     try {
       // Assuming you have middleware that extracts user information from the token
       // and attaches it to the request (e.g., req.user)
-      const user = req.user;
-
+      const userid = req.user;
+      const user=await User.findById(userid);
       res.status(200).json({
         name: user.name,
         firstname: user.firstname,
@@ -176,6 +252,8 @@ const userController = {
         gender: user.gender,
         needs: user.needs,
         time:user.time,
+        phone:user.phone,
+        city:user.city,
         picture: user.picture,
       });
     } catch (error) {
@@ -221,8 +299,37 @@ const userController = {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   },
-  // Add freelancer card
-  addCardFreelancer:addCardFreelancerHandler
+  // Add or Editer freelancer card
+  addCardFreelancer:addCardFreelancerHandler,
+  //Add or Editer client card
+  addClientCard:addClientCardHandler,
+  getProfile: async (req, res) => {
+    try {
+      // Assuming you have middleware that extracts user information from the token
+      // and attaches it to the request (e.g., req.user)
+      const userid = req.user;
+      const user=await User.findById(userid);
+      const rate=await reviewController.getmean(userid)
+      res.status(200).json({
+        name: user.name,
+        firstname: user.firstname,
+        email: user.email,
+        birthday: user.birthday,
+        gender: user.gender,
+        role: user.role,
+        needs: user.needs,
+        availability: user.availability,
+        time:user.time,
+        city:user.city,
+        picture: user.picture,
+        phone:user.phone,
+        rate
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  },
 };
 
  

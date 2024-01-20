@@ -19,6 +19,7 @@ import {NgbDatepickerModule} from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { ProfileComponent } from './userinterface/profile/profile.component';
+import { DatePipe } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,8 +44,9 @@ import { ProfileComponent } from './userinterface/profile/profile.component';
     HttpClientModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
+    
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

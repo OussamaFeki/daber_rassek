@@ -11,10 +11,13 @@ router.post('/login', userController.logIn);
 
 // Add Freelancer Card
 router.put('/addfreelancercard', authenticateToken, userController.addCardFreelancer);
-
+//Add Client Card Route 
+router.put('/addclientcard', authenticateToken, userController.addClientCard);
 // Get ClientCard
 router.get('/getclientCard', authenticateToken, userController.getclientCard);
 router.get('/getfreelancerCard',authenticateToken,userController.getfreelancerCard)
+//GET user profile
+router.get('/profile', authenticateToken, userController.getProfile);
 // Update user profile
 router.put('/profile', authenticateToken, userController.updateProfile);
 
@@ -34,7 +37,7 @@ function authenticateToken(req, res, next) {
       return res.status(403).json({ error: 'Forbidden: Invalid token' });
     }
     req.user = user.id;
-    console.log(req.user)
+    // console.log(req.user)
     next();
   });
 }

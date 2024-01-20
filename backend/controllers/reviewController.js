@@ -30,9 +30,7 @@ exports.getAverageRatingForEmployee = async (req, res) => {
 };
 
 // Helper function to calculate average rating for a specific employee
-// Helper function to calculate average rating for a specific employee
-// Helper function to calculate average rating for a specific employee
-async function calculateMeanRating(employeeId) {
+exports.getmean= async function calculateMeanRating(employeeId) {
   try {
     const reviews = await Review.find({employeeId:employeeId});
 
@@ -49,3 +47,5 @@ async function calculateMeanRating(employeeId) {
     throw new Error('Error calculating mean rating');
   }
 }
+//export mean rating
+
