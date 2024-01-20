@@ -37,6 +37,7 @@ export class UserinterfaceComponent {
 			return `with: ${reason}`;
 		}
 	}
+	//pour logout
 	logout(): void {
 		// Call the logout method from AuthService
 		this.authService.logout();

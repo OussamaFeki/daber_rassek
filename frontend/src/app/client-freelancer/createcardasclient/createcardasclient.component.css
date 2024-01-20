@@ -39,13 +39,16 @@
     font-family: Comfortaa;
     
 }
+/* style of each input */
 .form-control{
     background-color: #E1F3FF;
 }
+/* style de button of  submit form */
 .form button{
     float: right;
     width: 30%;
 }
+/* style of input file */
 Input#file {
     Display: none;
 }
@@ -59,4 +62,34 @@ Label#pic {
 Label#pic:hover {
       Color: #de0611;
       Border: 1px dashed #de0611;
+}
+/* style of delete need button */
+#del{
+    width:fit-content;
+    border-radius: 100%;
+    border: none;
+    position: relative;
+    background: aliceblue;
+}
+#del:hover{
+    background:rgb(255, 35, 35);
+    color: white;
+}
+/* style of the need input */
+.need{
+    width:100px;
+    margin-left: 0%;
+    
+}
+/* style of the add button */
+#add{
+    width: fit-content;
+    border: ridge ;
+    border-radius: 25px;
+    background: transparent;
+    color:black;
+}
+#add:hover{
+    background-color: cyan ;
+    color: aliceblue;
 }

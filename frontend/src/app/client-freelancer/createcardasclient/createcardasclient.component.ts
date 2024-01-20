@@ -66,7 +66,10 @@ export class CreatecardasclientComponent implements OnInit {
     event.preventDefault(); 
     this.needsFormArray.push(this.fb.control('', Validators.required));
   }
-  
+  //remove input
+  deleteNeed(index: number): void {
+    this.needsFormArray.removeAt(index);
+  }
   //for images 
   onFileSelected(event: any): void {
     const file = event.target.files[0];

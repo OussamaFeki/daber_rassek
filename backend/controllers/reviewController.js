@@ -4,19 +4,31 @@ const Review = require('../models/reviews');
 // Create a new review
 exports.createReview = async (req, res) => {
   try {
-    const { clientId, employeeId, rating} = req.body;
+    const { clientId, employeeId, rating } = req.body;
+
     if (rating < 0 || rating > 5) {
-        return res.status(400).json({ error: 'Rating must be between 0 and 5' });
-      }
-    const review = new Review({ clientId, employeeId, rating});
-    await review.save();
-    res.status(201).json({ message: 'Review added successfully' });
+      return res.status(400).json({ error: 'Rating must be between 0 and 5' });
+    }
+
+    // Check if a review already exists for the client-employee pair
+    const existingReview = await Review.findOne({ clientId, employeeId });
+
+    if (existingReview) {
+      // Update the existing review
+      existingReview.rating = rating;
+      await existingReview.save();
+      res.status(200).json({ message: 'Review updated successfully' });
+    } else {
+      // Create a new review
+      const review = new Review({ clientId, employeeId, rating });
+      await review.save();
+      res.status(201).json({ message: 'Review added successfully' });
+    }
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
-
 // Get average rating for a specific employee
 exports.getAverageRatingForEmployee = async (req, res) => {
   try {

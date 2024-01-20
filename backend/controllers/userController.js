@@ -95,8 +95,6 @@ const addClientCardHandler = async (req, res) => {
         console.error(err);
         return res.status(500).json({ error: 'Internal Server Error' });
       }
-      //voir le req body
-      console.log(req.body.needs)
       // Prepare the update data based on request body
     
       const updateData = {

@@ -6,6 +6,7 @@ const { disconnectFromMongoDB } = require('./connection/db');
 const cors = require('cors');
 const reviewRoutes = require('./routers/reviewRoutes');
 const userRoutes=require('./routers/userRoutes');
+const searchRoutes=require('./routers/searchRoutes')
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(urlencoded({extended:true}))
@@ -20,6 +21,7 @@ app.get('/', (req, res) => {
 app.use('/image',express.static('images'))
 app.use('/review', reviewRoutes);
 app.use('/user', userRoutes);
+app.use('/search',searchRoutes);
 
 // Add your Express routes and middleware here
 

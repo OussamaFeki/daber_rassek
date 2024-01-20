@@ -6,12 +6,16 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class UserService {
+  //for manage the account
   private apiUrl = 'http://localhost:3000/user';
   private tokenKey = 'oussama';
-  
+  //for searsh 
+  private searshurl= 'http://localhost:3000/search'
   constructor(private http: HttpClient,private auth:AuthService) {
 
   }
+  // "for manage the account"
+  // for get profile (the two card)
   getProfile() : Observable<any> {
     const token =localStorage.getItem(this.tokenKey)
     const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
@@ -38,6 +42,7 @@ export class UserService {
 
     return this.http.put(`${this.apiUrl}/addfreelancercard`, formData,{headers});
   }
+  //for add or Modifie the Client Card 
   addClientCard(user: any,needsFormArray: any, picture: File | null): Observable<any> {
     const token =localStorage.getItem(this.tokenKey)
     const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
@@ -61,6 +66,7 @@ export class UserService {
     }
     return this.http.put(`${this.apiUrl}/addclientcard`,formData,{headers});
   }
+  // For get the Freelancer Card 
   getFreelancerCard(): Observable<any> {
     const token =localStorage.getItem(this.tokenKey)
     const headers = new HttpHeaders({
@@ -69,6 +75,7 @@ export class UserService {
 
     return this.http.get<any>(`${this.apiUrl}/getfreelancerCard`, { headers });
   }
+  //For get the clent card 
   getClientCard(): Observable<any> {
     const token =localStorage.getItem(this.tokenKey)
     const headers = new HttpHeaders({
@@ -76,5 +83,9 @@ export class UserService {
     });
 
     return this.http.get<any>(`${this.apiUrl}/getclientCard`, { headers });
+  }
+   // "for search "
+   searchUsers(query: string, field: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.searshurl}/users?query=${query}&field=${field}`);
   }
 }

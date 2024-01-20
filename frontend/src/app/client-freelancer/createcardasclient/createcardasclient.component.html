@@ -48,16 +48,19 @@
           <input type="text" class="form-control" formControlName="phone" id="phone" required />
         </div>
       </div>
-      <div class="mb-3 row">
-        <div formArrayName="needs">
+      <div >
+        <div formArrayName="needs"class="mb-3 row">
           <label for="needs" class="col-sm-5 col-form-label">Needs:</label>
-          <div class="col-sm-7">
-            <div *ngFor="let need of needsFormArray.controls; let i = index">
-              <input type="text" class="form-control" [formControlName]="i" id="needs" required />
-            </div>
-          </div>
+            <div *ngFor="let need of needsFormArray.controls; let i = index" class="col-sm-2">
+              <button id="del" (click)="deleteNeed(i)"><i class="bi bi-bookmark-x"></i></button>
+              <input type="text" class="form-control need" [formControlName]="i" id="needs" required />
+              
+            </div> 
         </div>
-        <button (click)="addNeed($event)">Add Need</button>
+        <div class="mb-3 row">
+          <button id="add" (click)="addNeed($event)"><i class="bi bi-plus-circle"></i> Add Need</button>
+        </div>
+        
       </div>      
       <div class="mb-3 row">
         <label for="start" class="col-sm-5 col-form-label">Start Time:</label>

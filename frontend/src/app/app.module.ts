@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { ProfileComponent } from './userinterface/profile/profile.component';
 import { DatePipe } from '@angular/common';
+import { AllusersComponent } from './userinterface/allusers/allusers.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +33,7 @@ import { DatePipe } from '@angular/common';
     HomepageComponent,
     UserinterfaceComponent,
     ProfileComponent,
+    AllusersComponent,
   ],
   imports: [
     BrowserModule,
