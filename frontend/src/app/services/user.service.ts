@@ -12,7 +12,7 @@ export class UserService {
   //for searsh 
   private searshurl= 'http://localhost:3000/search'
   //for review
-  private reviewurl= 'http://localhost:3000/users'
+  private reviewurl= 'http://localhost:3000/review'
   constructor(private http: HttpClient,private auth:AuthService) {
 
   }
@@ -93,10 +93,7 @@ export class UserService {
   //"for review"
   //add a rate from client to employee
   addrate(clientId:string,employeeId:string,rating:any): Observable<any> {
-    const formData = new FormData();
-    formData.append('clientId', clientId);
-    formData.append('employeeId', employeeId);
-    formData.append('rating', rating);
-    return this.http.post(`${this.searshurl}/add`,formData);
+    const reviewData = { clientId, employeeId, rating };
+    return this.http.post(`${this.reviewurl}/add`,reviewData);
   }
 }

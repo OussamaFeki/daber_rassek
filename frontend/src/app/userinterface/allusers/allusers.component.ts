@@ -72,11 +72,12 @@ export class AllusersComponent {
 		}
 	}
   //  for the addrating
-  addrate(id:any){
-    this.service.addrate(id,this.data.id,this.addedRate).subscribe((data)=>{
-
+  addrate(id:any,rate:any){
+    this.service.addrate(this.data.id,id,rate).subscribe((data)=>{
+      console.log(data)
     },(err)=>{
-
+      console.log(err)
     } )
+    
   }
 }

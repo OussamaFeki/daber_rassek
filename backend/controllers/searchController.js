@@ -10,8 +10,11 @@ const searchController = {
           if (!searchTerm || !searchField) {
             const users = await User.find();
             const usersWithReviews = await Promise.all(users.map(async (user) => {
+              //the mean of rate of employee
               const rate = await reviewController.getmean(user._id);
-              return { ...user.toObject(), rate };
+              // count the raviewers of employee
+              const numRaters = await reviewController.getNumRaters(user._id)
+              return { ...user.toObject(), rate , numRaters};
             }));
             // console.log(usersWithReviews);
             res.json(usersWithReviews);
