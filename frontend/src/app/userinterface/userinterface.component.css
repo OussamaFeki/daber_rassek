@@ -48,3 +48,9 @@ nav img{
 .form-control{
     height: 30px;
 }
+.bi-pencil-square{
+    color:orange;
+}
+.bi-plus-square{
+    color: aqua;
+}

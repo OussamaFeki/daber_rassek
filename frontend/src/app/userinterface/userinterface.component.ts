@@ -2,6 +2,7 @@ import { Component , ViewChild, ElementRef, AfterViewInit } from '@angular/core'
 import { ModalDismissReasons, NgbDatepickerModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { UserService } from '../services/user.service';
 @Component({
   selector: 'app-userinterface',
   templateUrl: './userinterface.component.html',
@@ -11,10 +12,16 @@ export class UserinterfaceComponent {
   closeResult = '';
   token:any;
   data:any;
-	constructor(private modalService: NgbModal,private authService:AuthService,private router: Router) {
-		this.token=this.authService.getAuthToken();
-		this.data=this.authService.decodeToken(this.token);
-		console.log(this.data.id);
+	constructor(private modalService: NgbModal,private authService:AuthService,private router: Router,private userservice:UserService) {
+		this.userservice.getProfile().subscribe(
+			(user) => {
+			  // Handle the freelancerCard data
+			  this.data =user
+			},
+			(error) => {
+			  console.error('Error fetching Freelancer Card:', error);
+			}
+		  );
 	}
 
 	open(content:any) {

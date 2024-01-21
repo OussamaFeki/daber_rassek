@@ -3,6 +3,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    justify-content: center;
 }
 .card-container{
     width: 400px;
@@ -14,6 +15,11 @@
     padding-top: 10px;
     padding-bottom:7px;
     transition: background-color 0.3s;
+    cursor: pointer;
+}
+.card-container:hover{
+    background-color: skyblue;
+    color: white;
 }
 img.prof {
     margin-top: 2px;

@@ -21,6 +21,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { ProfileComponent } from './userinterface/profile/profile.component';
 import { DatePipe } from '@angular/common';
 import { AllusersComponent } from './userinterface/allusers/allusers.component';
+import { SettingComponent } from './userinterface/setting/setting.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +35,7 @@ import { AllusersComponent } from './userinterface/allusers/allusers.component';
     UserinterfaceComponent,
     ProfileComponent,
     AllusersComponent,
+    SettingComponent,
   ],
   imports: [
     BrowserModule,

@@ -19,12 +19,22 @@ export class CreatecardasFreelancerComponent implements OnInit  {
       birthday: ['', Validators.required],
       gender: ['', Validators.required],
       role:['', Validators.required],  
-      phone:['', Validators.required],
+      phone: ['', [Validators.required, this.validatePhoneNumber]],
       city:['', Validators.required],
       from: ['', Validators.required],
       to: ['', Validators.required],
       // Add other form controls as needed
     });
+  }
+  validatePhoneNumber(control:any) {
+    const phoneNumber = control.value;
+
+    // Check if the phone number has exactly 8 digits
+    if (/^\d{8}$/.test(phoneNumber)) {
+      return null; // Valid phone number
+    } else {
+      return { invalidPhoneNumber: true }; // Invalid phone number
+    }
   }
   ngOnInit(): void {
     // Fetch the user's current data and set it in the form
@@ -54,6 +64,7 @@ export class CreatecardasFreelancerComponent implements OnInit  {
   }
   // for create the card (Save)
   updateProfile(): void {
+    if (this.profileForm.valid) {
     const user = this.profileForm.value;
     console.log(user.from);
     console.log(this.profileForm.value)
@@ -68,7 +79,8 @@ export class CreatecardasFreelancerComponent implements OnInit  {
         console.error('Profile update failed', error);
         // Handle error
       }
-    );
+      );
+    }
   }
   //reset the form  for button (delete)
   resetForm(): void {

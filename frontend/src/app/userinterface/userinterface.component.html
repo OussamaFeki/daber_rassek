@@ -6,8 +6,23 @@
                 <ul class="navbar-nav" id="nav-list">
                     <li class="nav-item t"><button  #button type="button"  class="btn btn-light" placement="bottom" [ngbPopover]="managecard">manage card</button></li> 
                     <ng-template #managecard class="contentpop">
-                        <a routerLink="/addclientcard"><button class="btn" ><i class="bi bi-plus-square"> </i> add Client Card</button></a>
-                        <a routerLink='/addfreelancercard'><button class="btn" ><i class="bi bi-plus-square"> </i> add Freelancer Card</button></a>
+                        <a routerLink="/addclientcard">
+                            <button class="btn" *ngIf="!data.needs" >
+                                <i class="bi bi-plus-square" ></i>add Client Card
+                                
+                            </button>
+                            <button class="btn" *ngIf="data.needs">
+                                <i class="bi bi-pencil-square" ></i> edit Client Card
+                            </button>
+                        </a>
+                        <a routerLink='/addfreelancercard'>
+                            <button class="btn" *ngIf="!data.role" >
+                                <i class="bi bi-plus-square" ></i> add Freelancer Card
+                            </button>
+                            <button class="btn" *ngIf="data.role" >
+                                <i class="bi bi-pencil-square" ></i> edit Freelancer Card
+                            </button>
+                        </a>
                         
                       </ng-template>
                     <li class="nav-item t">
@@ -29,7 +44,7 @@
                     <!-- Popover Content Template -->
                     <ng-template #popoverContent class="contentpop">
                       <button class="btn" routerLink="profile">Profile</button>
-                      <button class="btn">Setting</button>
+                      <button class="btn" routerLink="setting">Setting</button>
                       <button class="btn" (click)="logout()">logout</button>
                     </ng-template>
                   </div>

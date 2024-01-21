@@ -22,7 +22,7 @@
       <div class="mb-3 row">
         <label for="birthday" class="col-sm-5 col-form-label">Date of birth :</label>
         <div class="col-sm-7">
-          <input type="date" class="form-control" formControlName="birthday" id="birthday" required />
+          <input type="date" class="form-control" formControlName="birthday" id="birthday" required [value]="profileForm.get('birthday')!.value" />
         </div>
       </div>
       <div class="mb-3 row">
@@ -47,6 +47,9 @@
         <div class="col-sm-7">
           <input type="text" class="form-control" formControlName="phone" id="phone" required />
         </div>
+        <div *ngIf="profileForm.get('phone')?.hasError('invalidPhoneNumber')" class="alert alert-danger" role="alert">
+          Please enter a valid 8-digit phone number.
+        </div>      
       </div>
       <div >
         <div formArrayName="needs"class="mb-3 row">

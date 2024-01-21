@@ -60,3 +60,8 @@ Label#pic:hover {
       Color: #de0611;
       Border: 1px dashed #de0611;
 }
+/* Style for disabled button */
+.btn-success[disabled] {
+    background-color: #6c757d; /* Use a different color for disabled state */
+    cursor: not-allowed;
+  }

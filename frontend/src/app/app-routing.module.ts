@@ -11,6 +11,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { isloggedGuard } from './guards/islogged.guard';
 import { ProfileComponent } from './userinterface/profile/profile.component';
 import { AllusersComponent } from './userinterface/allusers/allusers.component';
+import { SettingComponent } from './userinterface/setting/setting.component';
 const routes: Routes = [
 
   {path:'addclientcard',component:CreatecardasclientComponent,canActivate:[AuthGuard]},
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path:'signup',component:SignupComponent,canActivate:[isloggedGuard]},
   {path:'user',component:UserinterfaceComponent,canActivate:[AuthGuard],children:[
     {path:'',component:AllusersComponent},
+    {path:'setting',component:SettingComponent},
     {path:'profile',component:ProfileComponent}
   ]}
   

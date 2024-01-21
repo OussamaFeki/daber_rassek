@@ -24,7 +24,7 @@
             <div class="mb-4 row">
                 <label for="staticEmail" class="col-sm-5 col-form-label">Date of birth :</label>
                 <div class="col-sm-7">
-                    <input type="date" class="form-control" formControlName="birthday" id="staticEmail" required />
+                    <input type="date" class="form-control" formControlName="birthday" id="staticEmail" required [value]="profileForm.get('birthday')!.value"/>
                 </div>
             </div>
             <div class="mb-4 row">
@@ -83,7 +83,7 @@
                   <label for="file" id="pic">Upload File</label>
                 </div>
             </div>
-            <button type="submit" class="btn btn-success" >Confirm</button>
+            <button type="submit" class="btn btn-success" [disabled]="!profileForm.valid">Confirm</button>
         </form>
     </div>
 </body>

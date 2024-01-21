@@ -21,10 +21,20 @@ export class CreatecardasclientComponent implements OnInit {
       needs: this.fb.array([]), // Assuming needs is an array
       from: ['', Validators.required],
       to: ['', Validators.required],
-      phone:['', Validators.required],
+      phone: ['', [Validators.required, this.validatePhoneNumber]],
       city:['', Validators.required],
       // Add other form controls as needed
     });
+  }
+  validatePhoneNumber(control:any) {
+    const phoneNumber = control.value;
+
+    // Check if the phone number has exactly 8 digits
+    if (/^\d{8}$/.test(phoneNumber)) {
+      return null; // Valid phone number
+    } else {
+      return { invalidPhoneNumber: true }; // Invalid phone number
+    }
   }
   ngOnInit(): void {
     this.userservice.getClientCard().subscribe(
