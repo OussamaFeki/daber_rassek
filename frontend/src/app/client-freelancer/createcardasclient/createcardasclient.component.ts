@@ -1,5 +1,6 @@
 import { Component ,OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,Validators,FormArray} from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-createcardasclient',
@@ -10,7 +11,7 @@ export class CreatecardasclientComponent implements OnInit {
   profileForm: FormGroup;
   selectedFile: File | null = null;
   needsFormArray:any;
-  constructor(private userservice:UserService ,private fb: FormBuilder){
+  constructor(private userservice:UserService ,private fb: FormBuilder,private router:Router){
     
     this.profileForm = this.fb.group({
       name: ['', Validators.required],
@@ -75,11 +76,14 @@ export class CreatecardasclientComponent implements OnInit {
     const file = event.target.files[0];
     this.selectedFile = file;
   }
+  // for create the card (Save)
   updateProfile(): void {
+    if (this.profileForm.valid) {
     const user = this.profileForm.value;
     this.userservice.addClientCard(user, this.needsFormArray,this.selectedFile).subscribe(
       (response) => {
         console.log('Profile updated successfully', response);
+        this.router.navigate(['/user/profile']);
         // Handle success or navigate to another page
       },
       (error) => {
@@ -87,5 +91,9 @@ export class CreatecardasclientComponent implements OnInit {
         // Handle error
       }
     );
+  }}
+  //reset the form  for button (delete)
+  resetForm(): void {
+    this.profileForm.reset();
   }
 }

@@ -27,6 +27,7 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
+  // for Calculate the Age
   calculateAge(birthday: string): number {
     const birthdate = new Date(birthday);
     const today = new Date();
@@ -40,6 +41,7 @@ export class ProfileComponent implements OnInit {
 
     return age;
   }
+  //for format the time to PM and AM 
   formatTime(time: string): string {
     const formattedTime = this.datePipe.transform(new Date(`1970-01-01T${time}`), 'h:mm a');
     return formattedTime || time;

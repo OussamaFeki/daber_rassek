@@ -1,5 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 export class CreatecardasFreelancerComponent implements OnInit  {
   profileForm: FormGroup;
   selectedFile: File | null = null;
-  constructor(private userservice:UserService ,private fb: FormBuilder){
+  constructor(private userservice:UserService ,private fb: FormBuilder,private router:Router){
     
     this.profileForm = this.fb.group({
       name: ['', Validators.required],
@@ -51,6 +52,7 @@ export class CreatecardasFreelancerComponent implements OnInit  {
     const file = event.target.files[0];
     this.selectedFile = file;
   }
+  // for create the card (Save)
   updateProfile(): void {
     const user = this.profileForm.value;
     console.log(user.from);
@@ -58,12 +60,18 @@ export class CreatecardasFreelancerComponent implements OnInit  {
     this.userservice.updateProfile(user, this.selectedFile).subscribe(
       (response) => {
         console.log('Profile updated successfully', response);
+        this.router.navigate(['/user/profile']);
         // Handle success or navigate to another page
+
       },
       (error) => {
         console.error('Profile update failed', error);
         // Handle error
       }
     );
+  }
+  //reset the form  for button (delete)
+  resetForm(): void {
+    this.profileForm.reset();
   }
 }
