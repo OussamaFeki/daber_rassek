@@ -1,0 +1,164 @@
+@import '~swiper/swiper-bundle.css';
+.users{
+    margin: 44px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+.freelancer{
+   padding: 10px 100px;
+}
+*:not(.modal-body,.modal-header,.modal-footer,.btn-close,.modal-footer .btn){  
+    box-sizing:border-box ;
+}
+/* except this */
+.wrapper .carousel{
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% / 2)-12px ); 
+    gap: 16px;
+    position: relative;
+    
+}
+.wrapper{
+    width: fit-content;
+    justify-content: center;
+    overflow:hidden ;
+    max-width: 1240px;
+}
+/* for flashes of slides */
+
+.prev,.next{
+    position: absolute;
+    top:50%;
+    border-radius: 100%;
+    border: none;
+    width: 40px;
+    height: 40px;
+    color: black;
+    transform: translate(2%,-41%);
+}
+.prev{
+    left: 30px; 
+}
+.next{
+    right: 30px; 
+    
+}
+div #flash{
+    color: black;
+}
+div #flash:hover{
+    background-color: #A5D6A7;
+    /* Change background color on hover */
+    color: white;
+  }
+/* controle les cards */
+.card-container{
+    position: relative;
+    width: 400px;
+    height:max-content;
+    min-height: 230px;
+    box-shadow: 0px 4px 8px 0px rgba(171, 190, 209, 0.4);
+    background: white;
+    border-radius: 30px;
+    padding-top: 10px;
+    padding-bottom:7px;
+    transition: background-color 0.3s;
+    cursor: pointer;
+    list-style: none;
+}
+.card-container:hover{
+    background-color: skyblue;
+    color: white;
+}
+img.prof {
+    margin-top: 2px;
+    height: 100px;
+    width: 100px;
+    top: 0%;
+}
+.logo{
+    height: 30px;
+    width:50px;
+    margin-left:60px ;
+   position: absolute;
+   top: 0%;
+   right: 0%;
+   display: block;
+}
+.image-container {
+    flex: 1 1 40%; /* Half of the container width */
+    overflow: hidden;
+    text-align: center;
+    float: left;
+    margin-right: 20px;
+    height: fit-content;
+}
+.para-container{
+    flex: 1 1 40%; /* Half of the container width */
+    margin-left: 100px;
+}
+p{
+    flex: 1 1 30%;
+    
+}
+h6{
+    flex: 1 1 30%;
+    
+    
+}
+.header{
+    border-bottom: black 1px solid;
+    position: relative;
+    text-align: center;
+    height: 30px;
+    width: auto;
+    align-items: flex-end;
+}
+/* style of étoils */
+.overlay {
+    position: absolute;
+    top: 30px;
+    left: 319px;
+    width: 17%;
+    height: 62%;
+    background: transparent;
+}
+   .overlay::before {
+    content: "";
+    position: absolute;
+    top: 30px;
+    left: 319px;
+    width: 17%;
+    height: 62%;
+    background: transparent;
+   }
+   i {
+    position: relative;
+    display: inline-block;
+    font-size: 1.5rem;
+    padding-right: 0.1rem;
+    color: #d3d3d3;
+    
+    
+}
+
+.filled {
+    color: gold;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+}
+/* for the addedrate */
+.modal-body i {
+    font-size: 1.5rem;
+    padding-right: 0.1rem;
+    color: #b0c4de;
+}
+.modal-body .filled {
+    color: #ff1e1e;
+}

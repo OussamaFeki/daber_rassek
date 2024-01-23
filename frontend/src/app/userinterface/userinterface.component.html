@@ -7,11 +7,11 @@
                     <li class="nav-item t"><button  #button type="button"  class="btn btn-light" placement="bottom" [ngbPopover]="managecard">manage card</button></li> 
                     <ng-template #managecard class="contentpop">
                         <a routerLink="/addclientcard">
-                            <button class="btn" *ngIf="!data.needs" >
+                            <button class="btn" *ngIf="data.needs.length === 0" >
                                 <i class="bi bi-plus-square" ></i>add Client Card
                                 
                             </button>
-                            <button class="btn" *ngIf="data.needs">
+                            <button class="btn" *ngIf="data.needs.length > 0">
                                 <i class="bi bi-pencil-square" ></i> edit Client Card
                             </button>
                         </a>

@@ -1,1 +1,69 @@
-<p>card-freelance works!</p>
+<section class="freelancer">
+  <h3>Employee</h3>
+    <div class="container-fluid">
+        <div class="wrapper">
+          <div class="carousel" [style.transform]="'translateX(' + translateX + 'px)'">
+            <div class="container-fluid card-container" *ngFor="let user of users" (click)="open(content)">
+              
+                <div class="header">
+                    <h6>{{user.role}}</h6>
+                    <img src="../../../assets/images/Dabber_Rassek.png" alt="" class="logo">
+                    <div class="overlay"></div>
+                  </div>
+                
+                  <div class="image-container">
+                    <img [src]="user.picture ||'../../../assets/images/default-profile.png'" alt="" class="prof">
+                    <br>
+                    <ng-template #t let-fill="fill">
+                      <i class="bi-star-fill">
+                        <i *ngIf="fill > 0" class="bi-star-fill filled" [style.width.%]="fill"></i>
+                      </i>
+                    </ng-template>
+                
+                    <ngb-rating
+                      [(rate)]="user.rate"
+                      [starTemplate]="t"
+                      [readonly]="true"
+                      [max]="5"
+                    ></ngb-rating>
+                    <br>
+                    <i class="bi bi-person-fill"></i> {{user.numRaters}}
+                    <br>
+                  </div>
+                
+                  <div class="para-container">
+                    <p>
+                      I am {{ user.name }} {{ user.firstname }}. I am {{ calculateAge(user.birthday) }} years old.
+                      I am from {{user.city}}.I am available to provide my services from {{ formatTime(user.availability.from) }} to {{ formatTime(user.availability.to) }}.
+                      For more information and reservation, call me on {{ user.phone }}.
+                    </p>      
+                  </div>
+                  <ng-template #content let-modal class="notStyled">
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="modal-basic-title">Add Your Rate</h4>
+                      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+                    </div>
+                    <div class="modal-body">
+                      <ngb-rating [(rate)]="addedRate" [max]="5">
+                        <ng-template let-fill="fill" let-index="index">
+                          <i class="bi-star-fill">
+                            <i *ngIf="fill > 0" class="bi-star-fill filled" [style.width.%]="fill"></i>
+                          </i>
+                        </ng-template>
+                      </ngb-rating>
+                      <pre>Rate: <b>{{addedRate}}</b></pre>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-outline-dark" (click)="addrate(user._id,addedRate);modal.close('Save click')">Save</button>
+                    </div>
+                </ng-template>
+                </div>
+              </div>
+          <div class="button-area">
+            <button type="button" id="flash" class="prev" (click)="prevSlide()" *ngIf="currentSlide>0"><i class="bi bi-chevron-left"></i></button>
+            <button type="button" id="flash" class="next" (click)="nextSlide()" *ngIf="users.length-currentSlide>3"><i class="bi bi-chevron-right"></i></button>
+          </div>
+            
+        </div>
+    </div>
+</section>

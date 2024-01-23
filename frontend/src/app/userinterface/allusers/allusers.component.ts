@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { DatePipe } from '@angular/common';
 import { AuthService } from 'src/app/services/auth.service';
-import { ModalDismissReasons, NgbDatepickerModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-allusers',
   templateUrl: './allusers.component.html',
@@ -10,6 +10,7 @@ import { ModalDismissReasons, NgbDatepickerModule, NgbModal } from '@ng-bootstra
 })
 export class AllusersComponent {
   users:any;
+  clients:any
   closeResult = '';
   query='';
   field='';
@@ -17,6 +18,7 @@ export class AllusersComponent {
   addedRate=0;
   token:any;
   data:any;
+  @Output() addRate = new EventEmitter<{ id: any; rate: any }>();
   constructor(private service:UserService,
     private authService:AuthService,
     private datePipe: DatePipe,
@@ -27,6 +29,7 @@ export class AllusersComponent {
       this.token=this.authService.getAuthToken();
 		  this.data=this.authService.decodeToken(this.token);
       this.users = data.filter((user) => user.role !== undefined && user._id!==this.data.id);
+      this.clients= data.filter((user)=>user.needs.length > 0 && user._id!==this.data.id )
       console.log(data)
     },(error)=>{
 
@@ -46,6 +49,7 @@ export class AllusersComponent {
 
     return age;
   }
+  //for formatte the data type of time to on pm and AM
   formatTime(time: string): string {
     const formattedTime = this.datePipe.transform(new Date(`1970-01-01T${time}`), 'h:mm a');
     return formattedTime || time;
@@ -78,6 +82,6 @@ export class AllusersComponent {
     },(err)=>{
       console.log(err)
     } )
-    
+    this.addRate.emit({ id, rate });
   }
 }

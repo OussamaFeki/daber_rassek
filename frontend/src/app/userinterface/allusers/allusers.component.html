@@ -1,57 +1,6 @@
 
 <div class="users">
-    <div class="container-fluid card-container" *ngFor="let user of users" (click)="open(content)">
-      <ng-template #content let-modal>
-        <div class="modal-header">
-          <h4 class="modal-title" id="modal-basic-title">Add Your Rate</h4>
-          <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-        </div>
-        <div class="modal-body">
-          <ngb-rating [(rate)]="addedRate" [max]="5">
-            <ng-template let-fill="fill" let-index="index">
-              <i class="bi-star-fill">
-                <i *ngIf="fill > 0" class="bi-star-fill filled" [style.width.%]="fill"></i>
-              </i>
-            </ng-template>
-          </ngb-rating>
-          <pre>Rate: <b>{{addedRate}}</b></pre>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-dark" (click)="addrate(user._id,addedRate);modal.close('Save click')">Save</button>
-        </div>
-      </ng-template>
-        <div class="header">
-            <h6>{{user.role}}</h6>
-            <img src="../../../assets/images/Dabber_Rassek.png" alt="" class="logo">
-            <div class="overlay"></div>
-          </div>
-        
-          <div class="image-container">
-            <img [src]="user.picture ||'../../../assets/images/default-profile.png'" alt="" class="prof">
-            <br>
-            <ng-template #t let-fill="fill">
-              <i class="bi-star-fill">
-                <i *ngIf="fill > 0" class="bi-star-fill filled" [style.width.%]="fill"></i>
-              </i>
-            </ng-template>
-        
-            <ngb-rating
-              [(rate)]="user.rate"
-              [starTemplate]="t"
-              [readonly]="true"
-              [max]="5"
-            ></ngb-rating>
-            <br>
-            <i class="bi bi-person-fill"></i> {{user.numRaters}}
-            <br>
-          </div>
-        
-          <div class="para-container">
-            <p>
-              I am {{ user.name }} {{ user.firstname }}. I am {{ calculateAge(user.birthday) }} years old.
-              I am from {{user.city}}.I am available to provide my services from {{ formatTime(user.availability.from) }} to {{ formatTime(user.availability.to) }}.
-              For more information and reservation, call me on {{ user.phone }}.
-            </p>      
-          </div>
-    </div>
+    
 </div>
+<app-card-freelancers [users]="users" [data]="data" (addRate)="addrate($event.id, $event.rate)" ></app-card-freelancers>
+<app-card-clients [users]="clients" [data]="data"></app-card-clients>
