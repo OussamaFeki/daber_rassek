@@ -2,5 +2,5 @@
 <div class="users">
     
 </div>
-<app-card-freelancers [users]="users" [data]="data" (addRate)="addrate($event.id, $event.rate)" ></app-card-freelancers>
-<app-card-clients [users]="clients" [data]="data"></app-card-clients>
+<app-card-freelancers [users]="users" [data]="data" (addRate)="addrate($event.id, $event.rate,$event.i)" ></app-card-freelancers>
+<app-card-clients [users]="clients" [data]="data" (addTrust)="addtrust($event.id, $event.rate,$event.i)"></app-card-clients>

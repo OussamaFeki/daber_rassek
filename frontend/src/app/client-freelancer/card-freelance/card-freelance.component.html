@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="wrapper">
           <div class="carousel" [style.transform]="'translateX(' + translateX + 'px)'">
-            <div class="container-fluid card-container" *ngFor="let user of users" (click)="open(content)">
+            <div class="container-fluid card-container" *ngFor="let user of users;let i=index" (click)="open(content)">
               
                 <div class="header">
                     <h6>{{user.role}}</h6>
@@ -54,7 +54,7 @@
                       <pre>Rate: <b>{{addedRate}}</b></pre>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-outline-dark" (click)="addrate(user._id,addedRate);modal.close('Save click')">Save</button>
+                      <button type="button" class="btn btn-outline-dark" (click)="addrate(user._id,addedRate,i);modal.close('Save click')">Save</button>
                     </div>
                 </ng-template>
                 </div>

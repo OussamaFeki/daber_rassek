@@ -96,4 +96,10 @@ export class UserService {
     const reviewData = { clientId, employeeId, rating };
     return this.http.post(`${this.reviewurl}/add`,reviewData);
   }
+  //"For Trust"
+  //add a trust rate
+  addtrust(clientId:string,employeeId:string,rating:any): Observable<any> {
+    const reviewData = { clientId, employeeId, rating };
+    return this.http.post(`${this.reviewurl}/addtrust`,reviewData);
+  }
 }

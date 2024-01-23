@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -15,6 +15,8 @@ export class CardClientsComponent {
   closeResult = '';
   @Input() users:any;
   @Input()data:any;
+  @Output() addTrust = new EventEmitter<{ id: any; rate: any,i:any }>();
+  addedRate=0;
   constructor(private modalService: NgbModal,private datePipe: DatePipe){
     
   }
@@ -58,10 +60,10 @@ export class CardClientsComponent {
         return `with: ${reason}`;
       }
     }
-    //add user Rate 
-    // addrate(id:any,rate:any){
-    //   this.addRate.emit({ id, rate });
-    // }
+   //add user Rate 
+    addrate(id:any,rate:any, i:any){
+      this.addTrust.emit({ id, rate, i});
+    }
     // 
     prevSlide() {
       this.currentSlide = Math.max(this.currentSlide - 1, 0);

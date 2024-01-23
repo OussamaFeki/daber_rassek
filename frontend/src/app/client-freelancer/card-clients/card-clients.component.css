@@ -8,17 +8,18 @@
 .Clients{
    padding: 10px 100px;
 }
-*{  padding: 0;
-    margin: 0;
+*:not(.modal-body,.modal-header,.modal-footer,.btn-close,.modal-footer .btn){  
     box-sizing:border-box ;
 }
 
+/* except this */
 .wrapper .carousel{
     display: grid;
     grid-auto-flow: column;
     grid-auto-columns: calc((100% / 2)-12px ); 
     gap: 16px;
     position: relative;
+    
 }
 .wrapper{
     width: fit-content;
@@ -151,4 +152,13 @@ h6{
     top: 0;
     left: 0;
     
+}
+/* for the addedrate */
+.modal-body i {
+    font-size: 1.5rem;
+    padding-right: 0.1rem;
+    color: #b0c4de;
+}
+.modal-body .filled {
+    color: #ff1e1e;
 }

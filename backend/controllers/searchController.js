@@ -1,6 +1,7 @@
 const User = require('../models/user');
 //prendre le controler de review 
 const reviewController = require('../controllers/reviewController');
+const trustController=require('../controllers/trustController');
 const searchController = {
     searchUsers : async (req, res) => {
         try {
@@ -13,8 +14,12 @@ const searchController = {
               //the mean of rate of employee
               const rate = await reviewController.getmean(user._id);
               // count the raviewers of employee
-              const numRaters = await reviewController.getNumRaters(user._id)
-              return { ...user.toObject(), rate , numRaters};
+              const numRaters = await reviewController.getNumRaters(user._id);
+              //the mean of trust rate of client
+              const trustrate = await trustController.getmean(user._id);
+              // count the trusters of client
+              const numtruster= await trustController.getNumTrusters(user._id);
+              return { ...user.toObject(), rate , numRaters, trustrate, numtruster};
             }));
             // console.log(usersWithReviews);
             res.json(usersWithReviews);

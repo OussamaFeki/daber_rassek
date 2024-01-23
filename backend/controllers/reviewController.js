@@ -12,17 +12,20 @@ exports.createReview = async (req, res) => {
 
     // Check if a review already exists for the client-employee pair
     const existingReview = await Review.findOne({ clientId, employeeId });
-
     if (existingReview) {
       // Update the existing review
       existingReview.rating = rating;
       await existingReview.save();
-      res.status(200).json({ message: 'Review updated successfully' });
+      const rate = await this.getmean(employeeId);
+      const numRaters = await this.getNumRaters(employeeId);
+      res.status(200).json({ message: 'Review updated successfully',rate,numRaters});
     } else {
       // Create a new review
       const review = new Review({ clientId, employeeId, rating });
       await review.save();
-      res.status(201).json({ message: 'Review added successfully' });
+      const rate = await this.getmean(employeeId);
+      const numRaters = await this.getNumRaters(employeeId);
+      res.status(201).json({ message: 'Review added successfully',rate,numRaters});
     }
   } catch (error) {
     console.error(error);

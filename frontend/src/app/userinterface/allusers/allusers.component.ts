@@ -18,7 +18,8 @@ export class AllusersComponent {
   addedRate=0;
   token:any;
   data:any;
-  @Output() addRate = new EventEmitter<{ id: any; rate: any }>();
+  @Output() addRate = new EventEmitter<{ id: any; rate: any,i:any }>();
+  @Output() addTrust = new EventEmitter<{ id: any; rate: any,i:any }>();
   constructor(private service:UserService,
     private authService:AuthService,
     private datePipe: DatePipe,
@@ -76,12 +77,24 @@ export class AllusersComponent {
 		}
 	}
   //  for the addrating
-  addrate(id:any,rate:any){
+  addrate(id:any,rate:any,i:any){
     this.service.addrate(this.data.id,id,rate).subscribe((data)=>{
-      console.log(data)
+      console.log(data);
+      this.users[i].rate=data.rate;
+      this.users[i].numRaters=data.numRaters
     },(err)=>{
       console.log(err)
     } )
-    this.addRate.emit({ id, rate });
+    this.addRate.emit({ id, rate, i});
+  }
+  addtrust(id:any,rate:any,i:any){
+    this.service.addtrust(id,this.data.id,rate).subscribe((data)=>{
+      console.log(data);
+      this.users[i].trustrate=data.trustrate;
+      this.users[i].numtruster=data.numtruster
+    },(err)=>{
+      console.log(err)
+    } )
+    this.addRate.emit({ id, rate, i});
   }
 }

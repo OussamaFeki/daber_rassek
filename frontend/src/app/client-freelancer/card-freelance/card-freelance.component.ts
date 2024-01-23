@@ -7,8 +7,9 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./card-freelance.component.css']
 })
 export class CardFreelanceComponent {
-  @Input() users:any
-  @Output() addRate = new EventEmitter<{ id: any; rate: any }>();
+  @Input() users:any;
+  @Input() newRate:any;
+  @Output() addRate = new EventEmitter<{ id: any; rate: any,i:any }>();
   closeResult = '';
   query='';
   field='';
@@ -18,7 +19,7 @@ export class CardFreelanceComponent {
   currentSlide = 0;
   cardWidth = 410; // Adjust the card width based on your design
   translateX = 0;
-  @Input()data:any;
+  @Input() data:any;
   constructor(private modalService: NgbModal,private datePipe: DatePipe){
     
   }
@@ -63,10 +64,9 @@ export class CardFreelanceComponent {
     }
   }
   //add user Rate 
-  addrate(id:any,rate:any){
-    this.addRate.emit({ id, rate });
+  addrate(id:any,rate:any, i:any){
+    this.addRate.emit({ id, rate, i});
   }
-  // 
   prevSlide() {
     this.currentSlide = Math.max(this.currentSlide - 1, 0);
     this.updateTranslateX();
