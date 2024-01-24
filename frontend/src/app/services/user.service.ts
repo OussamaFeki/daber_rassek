@@ -88,7 +88,7 @@ export class UserService {
   }
    // "for search "
    searchUsers(query: string, field: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.searshurl}/users?query=${query}&field=${field}`);
+    return this.http.get<any[]>(`${this.searshurl}/users?q=${query}&field=${field}`);
   }
   //"for review"
   //add a rate from client to employee

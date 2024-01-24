@@ -11,7 +11,9 @@ import { UserService } from '../services/user.service';
 export class UserinterfaceComponent {
   closeResult = '';
   token:any;
-  selectedRole: string = '';
+  selectedRole: string = 'all';
+  filterType: string = '';
+  searchTerm: string = '';
   data:any;
 	constructor(private modalService: NgbModal,private authService:AuthService,private router: Router,private userservice:UserService) {
 		this.userservice.getProfile().subscribe(
@@ -56,4 +58,16 @@ export class UserinterfaceComponent {
 	openXl(content:any) {
 		this.modalService.open(content, { size: 'xl' });
 	}
+	// search for the sercha bare
+	search() {
+		// Assuming you have a route for search results
+		// Modify 'search' based on your actual route configuration
+		this.router.navigate(['/user'], {
+		  queryParams: {
+			role: this.selectedRole,
+			term: this.searchTerm,
+			filter: this.filterType,
+		  }
+		});
+	  }
 }

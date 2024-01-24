@@ -3,6 +3,7 @@ import { UserService } from 'src/app/services/user.service';
 import { DatePipe } from '@angular/common';
 import { AuthService } from 'src/app/services/auth.service';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-allusers',
   templateUrl: './allusers.component.html',
@@ -12,8 +13,9 @@ export class AllusersComponent {
   users:any;
   clients:any
   closeResult = '';
-  query='';
-  field='';
+  query:string = '';
+  field:string = '';
+  role:string = '';
   currentRate:any;
   addedRate=0;
   token:any;
@@ -23,18 +25,44 @@ export class AllusersComponent {
   constructor(private service:UserService,
     private authService:AuthService,
     private datePipe: DatePipe,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private route: ActivatedRoute
     ){
-    
+      if(!this.query && !this.field && !this.role){
+        this.service.searchUsers(this.query,this.field).subscribe((data)=>{
+          this.token=this.authService.getAuthToken();
+          this.data=this.authService.decodeToken(this.token);
+          this.users = data.filter((user) => user.role !== undefined && user._id!==this.data.id);
+          this.clients= data.filter((user)=>user.needs.length > 0 && user._id!==this.data.id )
+          console.log(data)
+        },(error)=>{
+          console.log(error)
+        })
+      } 
+    this.route.queryParams.subscribe(params => {
+      this.query= params['term'];
+      this.field = params['filter'];
+      this.role = params['role'];
     this.service.searchUsers(this.query,this.field).subscribe((data)=>{
       this.token=this.authService.getAuthToken();
 		  this.data=this.authService.decodeToken(this.token);
+      //if the search bar filter of role iis all
+      if(this.role==='all'){
+        this.users = data.filter((user) => user.role !== undefined && user._id!==this.data.id);
+        this.clients= data.filter((user)=>user.needs.length > 0 && user._id!==this.data.id )
+      }
+      if(this.role==='employee'){
+        this.users = data.filter((user) => user.role !== undefined && user._id!==this.data.id);
+      }
+      if(this.role==='client'){
+        this.clients= data.filter((user)=>user.needs.length > 0 && user._id!==this.data.id )
+      }
       this.users = data.filter((user) => user.role !== undefined && user._id!==this.data.id);
       this.clients= data.filter((user)=>user.needs.length > 0 && user._id!==this.data.id )
       console.log(data)
     },(error)=>{
 
-    });
+    });})
     this.currentRate=0;
   }
   calculateAge(birthday: string): number {

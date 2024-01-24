@@ -5,6 +5,8 @@ const upload =require('../upload/upimg');
 const fs=require("fs");
 //prendre le controler de review 
 const reviewController = require('../controllers/reviewController');
+//get the trust Controller
+const trustController= require('../controllers/trustController')
 // Function to generate a JWT token
 function generateToken(user) {
   const payload = {
@@ -307,7 +309,13 @@ const userController = {
       // and attaches it to the request (e.g., req.user)
       const userid = req.user;
       const user=await User.findById(userid);
-      const rate=await reviewController.getmean(userid)
+      const rate=await reviewController.getmean(userid);
+      // count the raviewers of employee
+      const numRaters = await reviewController.getNumRaters(userid);
+      //the mean of trust rate of client
+      const trustrate = await trustController.getmean(userid);
+      // count the trusters of client
+      const numtruster= await trustController.getNumTrusters(userid);
       res.status(200).json({
         name: user.name,
         firstname: user.firstname,
@@ -321,7 +329,10 @@ const userController = {
         city:user.city,
         picture: user.picture,
         phone:user.phone,
-        rate
+        rate,
+        numRaters,
+        trustrate,
+        numtruster
       });
     } catch (error) {
       console.error(error);

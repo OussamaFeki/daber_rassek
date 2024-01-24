@@ -22,6 +22,7 @@ import { ProfileComponent } from './userinterface/profile/profile.component';
 import { DatePipe } from '@angular/common';
 import { AllusersComponent } from './userinterface/allusers/allusers.component';
 import { SettingComponent } from './userinterface/setting/setting.component';
+import { FormsModule } from '@angular/forms'; // Import FormsModule
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +44,7 @@ import { SettingComponent } from './userinterface/setting/setting.component';
     AppRoutingModule,
     RouterModule,
     NgbModule,
+    FormsModule,
     NgbPopoverModule,
     NgbDatepickerModule,
     HttpClientModule,

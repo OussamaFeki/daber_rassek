@@ -26,17 +26,20 @@
                         
                       </ng-template>
                     <li class="nav-item t">
-                        <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
-                    </li>
-                    <li>
-                        <button class="btn btn-outline-primary mb-2 me-2" (click)="openXl(content)">Extra large modal</button>
+                        <input class="form-control" list="datalistOptions" [(ngModel)]="searchTerm" id="exampleDataList" placeholder="Type to search...">
                     </li>
                     <li class="nav-item opt">
-                        <select class="form-select form-select-sm"  aria-label="Large select example">
-                            <option selected>All</option>
-                            <option value="1">freelancer</option>
-                            <option value="2">Client</option>
+                        <select class="form-select form-select-sm" [(ngModel)]="selectedRole" aria-label="Large select example">
+                            <option value="all" selected >All</option>
+                            <option value="employee">Employee</option>
+                            <option value="client">Client</option>
                           </select>
+                    </li>
+                    <li>
+                      <button class="btn btn-outline-primary mb-2 me-2" (click)="openXl(content)">Extra large modal</button>
+                  </li>
+                    <li>
+                      <button type="button" class="btn btn-outline-success" (click)="search()">Search</button>
                     </li>
                 </ul>
                 <div class="forpopover">
@@ -59,25 +62,25 @@
                     <div class="modal-body">
                       <p>Choose from the following options:</p>
                   
-                      <!-- Radio buttons for role -->
+                      <!-- Radio buttons for attribute of all or -->
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="options" id="roleOption1" value="Admin">
+                        <input class="form-check-input" type="radio" name="options" id="roleOption1" [(ngModel)]="filterType" value="role">
                         <label class="form-check-label" for="roleOption1">Role</label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="options" id="roleOption2"  value="User">
+                        <input class="form-check-input" type="radio" name="options" id="roleOption2" [(ngModel)]="filterType" value="name">
                         <label class="form-check-label" for="roleOption2">Name</label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="options" id="roleOption2"  value="User">
-                        <label class="form-check-label" for="roleOption2">city</label>
+                        <input class="form-check-input" type="radio" name="options" id="roleOption2" [(ngModel)]="filterType" value="city">
+                        <label class="form-check-label" for="roleOption2">City</label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="options" id="roleOption2"  value="User">
-                        <label class="form-check-label" for="roleOption2">availability</label>
+                        <input class="form-check-input" type="radio" name="options" id="roleOption2" [(ngModel)]="filterType" value="from">
+                        <label class="form-check-label" for="roleOption2">availability from</label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="options" id="roleOption2"  value="User">
+                        <input class="form-check-input" type="radio" name="options" id="roleOption2" [(ngModel)]="filterType" value="rate">
                         <label class="form-check-label" for="roleOption2">rate</label>
                       </div>
                       
