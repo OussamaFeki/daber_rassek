@@ -90,8 +90,8 @@ export class AllusersComponent {
   addtrust(id:any,rate:any,i:any){
     this.service.addtrust(id,this.data.id,rate).subscribe((data)=>{
       console.log(data);
-      this.users[i].trustrate=data.trustrate;
-      this.users[i].numtruster=data.numtruster
+      this.clients[i].trustrate=data.trustrate;
+      this.clients[i].numtruster=data.numtruster
     },(err)=>{
       console.log(err)
     } )

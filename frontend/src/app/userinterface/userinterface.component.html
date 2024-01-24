@@ -28,6 +28,9 @@
                     <li class="nav-item t">
                         <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
                     </li>
+                    <li>
+                        <button class="btn btn-outline-primary mb-2 me-2" (click)="openXl(content)">Extra large modal</button>
+                    </li>
                     <li class="nav-item opt">
                         <select class="form-select form-select-sm"  aria-label="Large select example">
                             <option selected>All</option>
@@ -47,7 +50,52 @@
                       <button class="btn" routerLink="setting">Setting</button>
                       <button class="btn" (click)="logout()">logout</button>
                     </ng-template>
-                  </div>
+                </div>
+                <ng-template #content let-modal>
+                    <div class="modal-header">
+                      <h4 class="modal-title">Modal title</h4>
+                      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Choose from the following options:</p>
+                  
+                      <!-- Radio buttons for role -->
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="options" id="roleOption1" value="Admin">
+                        <label class="form-check-label" for="roleOption1">Role</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="options" id="roleOption2"  value="User">
+                        <label class="form-check-label" for="roleOption2">Name</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="options" id="roleOption2"  value="User">
+                        <label class="form-check-label" for="roleOption2">city</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="options" id="roleOption2"  value="User">
+                        <label class="form-check-label" for="roleOption2">availability</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="options" id="roleOption2"  value="User">
+                        <label class="form-check-label" for="roleOption2">rate</label>
+                      </div>
+                      
+                      <!-- Radio buttons for time -->
+                      <!-- Add similar code for time -->
+                  
+                      <!-- Radio buttons for name -->
+                      <!-- Add similar code for name -->
+                  
+                      <!-- Radio buttons for city -->
+                      <!-- Add similar code for city -->
+                  
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">OK</button>
+                    </div>
+                  </ng-template>
+                  
                   
             </div>
             

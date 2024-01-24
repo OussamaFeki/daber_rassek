@@ -11,6 +11,7 @@ import { UserService } from '../services/user.service';
 export class UserinterfaceComponent {
   closeResult = '';
   token:any;
+  selectedRole: string = '';
   data:any;
 	constructor(private modalService: NgbModal,private authService:AuthService,private router: Router,private userservice:UserService) {
 		this.userservice.getProfile().subscribe(
@@ -51,5 +52,8 @@ export class UserinterfaceComponent {
 	
 		// Optionally, navigate to the login page or another page
 		this.router.navigate(['/login']); // Update with your login route
-	  }
+	}
+	openXl(content:any) {
+		this.modalService.open(content, { size: 'xl' });
+	}
 }

@@ -6,7 +6,7 @@
     justify-content: center;
 }
 .Clients{
-   padding: 10px 100px;
+   padding: 3px 100px;
 }
 *:not(.modal-body,.modal-header,.modal-footer,.btn-close,.modal-footer .btn){  
     box-sizing:border-box ;
