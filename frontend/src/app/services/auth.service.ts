@@ -1,5 +1,5 @@
 import { Injectable,TemplateRef } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
@@ -33,6 +33,16 @@ export class AuthService {
   }
   removeAuthToken(): void {
     localStorage.removeItem(this.tokenKey);
+  }
+  //change un password
+  changePassword(currentPassword: string, newPassword: string): Observable<any> {
+    const token =localStorage.getItem(this.tokenKey)
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    const body = { currentPassword, newPassword };
+    return this.http.put(`${this.apiUrl}/setting`,body,{ headers });
+    // Replace '/change-password' with your actual API endpoint for changing passwords
   }
   logout(): void {
     // Call any additional cleanup or backend logout logic if needed

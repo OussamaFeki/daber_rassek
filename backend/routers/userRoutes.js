@@ -20,4 +20,6 @@ router.get('/getfreelancerCard',authenticateToken,userController.getfreelancerCa
 router.get('/profile', authenticateToken, userController.getProfile);
 // Update user profile
 router.put('/profile', authenticateToken, userController.updateProfile);
+//change password
+router.put('/setting' , authenticateToken,userController.changePassword);
 module.exports = router;

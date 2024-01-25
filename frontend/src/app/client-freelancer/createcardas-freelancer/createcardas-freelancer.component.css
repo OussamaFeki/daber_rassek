@@ -64,4 +64,4 @@ Label#pic:hover {
 .btn-success[disabled] {
     background-color: #6c757d; /* Use a different color for disabled state */
     cursor: not-allowed;
-  }
+}

@@ -54,3 +54,7 @@ nav img{
 .bi-plus-square{
     color: aqua;
 }
+/* style of input of number of raters */
+#minNumRater{
+    width: 60px;
+}

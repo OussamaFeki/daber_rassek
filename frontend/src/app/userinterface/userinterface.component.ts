@@ -14,6 +14,9 @@ export class UserinterfaceComponent {
   selectedRole: string = 'all';
   filterType: string = '';
   searchTerm: string = '';
+  currentRate=0;
+  numRaters=0;
+  numRater=0;
   data:any;
 	constructor(private modalService: NgbModal,private authService:AuthService,private router: Router,private userservice:UserService) {
 		this.userservice.getProfile().subscribe(
@@ -67,6 +70,8 @@ export class UserinterfaceComponent {
 			role: this.selectedRole,
 			term: this.searchTerm,
 			filter: this.filterType,
+			rate:this.currentRate,
+			numRater:this.numRater
 		  }
 		});
 	  }

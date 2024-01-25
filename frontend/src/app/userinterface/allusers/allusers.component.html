@@ -55,7 +55,10 @@
             </div>
       </div>
 </div>
-<div class="users" *ngIf="role==='client'"  >
+<div *ngIf="role==='employee'&& users.length===0" >
+  <h6>There is no employee with this characteristics.</h6>
+</div>
+<div class="users" *ngIf="role==='client'&& clients"   >
     <div class="container-fluid card-container" *ngFor="let user of clients; let i=index" (click)="open(content)">            
         <div class="header">
             <h6>Client</h6>
@@ -117,7 +120,16 @@
         </ng-template>
       </div>
 </div>
-<div *ngIf="role==='all'||!role">
-    <app-card-freelancers [users]="users" [data]="data" (addRate)="addrate($event.id, $event.rate,$event.i)" ></app-card-freelancers>
-    <app-card-clients [users]="clients" [data]="data" (addTrust)="addtrust($event.id, $event.rate,$event.i)"></app-card-clients>
+<div *ngIf="role==='client'&& clients.length===0" >
+  <h6>There is no client with this characteristics.</h6>
 </div>
+<div *ngIf="role==='all'||!role">
+    <app-card-freelancers  [users]="users" [data]="data" (addRate)="addrate($event.id, $event.rate,$event.i)" ></app-card-freelancers>
+    <div *ngIf="users.length===0" >
+      <h6>There is no employee with this characteristics.</h6>
+    </div>
+    <app-card-clients [users]="clients" [data]="data" (addTrust)="addtrust($event.id, $event.rate,$event.i)"></app-card-clients>
+    <div *ngIf="clients.length===0" >
+      <h6>There is no client with this characteristics.</h6>
+    </div>
+  </div>

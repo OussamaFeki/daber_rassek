@@ -1,0 +1,8 @@
+div#setting1{
+    position: relative;
+    padding-top: 30%;
+    
+}
+div#setting1,#setting{
+    padding-left: 60%;
+}

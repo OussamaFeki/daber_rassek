@@ -17,7 +17,9 @@ export class AllusersComponent {
   field:string = '';
   role:string = '';
   currentRate:any;
+  filterRate=0;
   addedRate=0;
+  numRater=0;
   token:any;
   data:any;
   @Output() addRate = new EventEmitter<{ id: any; rate: any,i:any }>();
@@ -43,22 +45,26 @@ export class AllusersComponent {
       this.query= params['term'];
       this.field = params['filter'];
       this.role = params['role'];
+      this.filterRate=params['rate'];
+      this.numRater=params['numRater'];
     this.service.searchUsers(this.query,this.field).subscribe((data)=>{
       this.token=this.authService.getAuthToken();
 		  this.data=this.authService.decodeToken(this.token);
       //if the search bar filter of role iis all
+      if(this.role===''){
+        this.users = data.filter((user) => user.role !== undefined && user._id!==this.data.id && this.filterRate<=user.rate && this.numRater<=user.numRaters);
+        this.clients= data.filter((user)=>user.needs.length > 0 && user._id!==this.data.id && this.filterRate<=user.trustrate && this.numRater<=user.numtruster)
+      }
       if(this.role==='all'){
-        this.users = data.filter((user) => user.role !== undefined && user._id!==this.data.id);
-        this.clients= data.filter((user)=>user.needs.length > 0 && user._id!==this.data.id )
+        this.users = data.filter((user) => user.role !== undefined && user._id!==this.data.id && this.filterRate<=user.rate && this.numRater<=user.numRaters);
+        this.clients= data.filter((user)=>user.needs.length > 0 && user._id!==this.data.id && this.filterRate<=user.trustrate && this.numRater<=user.numtruster)
       }
       if(this.role==='employee'){
-        this.users = data.filter((user) => user.role !== undefined && user._id!==this.data.id);
+        this.users = data.filter((user) => user.role !== undefined && user._id!==this.data.id && this.filterRate<=user.rate && this.numRater<=user.numRaters);
       }
       if(this.role==='client'){
-        this.clients= data.filter((user)=>user.needs.length > 0 && user._id!==this.data.id )
+        this.clients= data.filter((user)=>user.needs.length > 0 && user._id!==this.data.id && this.filterRate<=user.trustrate && this.numRater<=user.numtruster)
       }
-      this.users = data.filter((user) => user.role !== undefined && user._id!==this.data.id);
-      this.clients= data.filter((user)=>user.needs.length > 0 && user._id!==this.data.id )
       console.log(data)
     },(error)=>{
 

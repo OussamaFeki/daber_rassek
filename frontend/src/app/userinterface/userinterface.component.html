@@ -1,7 +1,7 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg">
-            <img src="../../assets/images/Home.png" alt=""/>
+            <img src="../../assets/images/Home.png" alt="" routerLink="/user"/>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav" id="nav-list">
                     <li class="nav-item t"><button  #button type="button"  class="btn btn-light" placement="bottom" [ngbPopover]="managecard">manage card</button></li> 
@@ -35,9 +35,12 @@
                             <option value="client">Client</option>
                           </select>
                     </li>
-                    <li>
-                      <button class="btn btn-outline-primary mb-2 me-2" (click)="openXl(content)">Extra large modal</button>
-                  </li>
+                    <li *ngIf="filterType===''">
+                      <button class="btn btn-outline-primary mb-2 me-2" (click)="openXl(content)">filter</button>
+                    </li>
+                    <li *ngIf="filterType!==''">
+                      <button class="btn btn-outline-primary mb-2 me-2" (click)="openXl(content)">{{filterType}}</button>
+                    </li>
                     <li>
                       <button type="button" class="btn btn-outline-success" (click)="search()">Search</button>
                     </li>
@@ -64,10 +67,6 @@
                   
                       <!-- Radio buttons for attribute of all or -->
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="options" id="roleOption1" [(ngModel)]="filterType" value="role">
-                        <label class="form-check-label" for="roleOption1">Role</label>
-                      </div>
-                      <div class="form-check">
                         <input class="form-check-input" type="radio" name="options" id="roleOption2" [(ngModel)]="filterType" value="name">
                         <label class="form-check-label" for="roleOption2">Name</label>
                       </div>
@@ -75,16 +74,33 @@
                         <input class="form-check-input" type="radio" name="options" id="roleOption2" [(ngModel)]="filterType" value="city">
                         <label class="form-check-label" for="roleOption2">City</label>
                       </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="options" id="roleOption2" [(ngModel)]="filterType" value="from">
-                        <label class="form-check-label" for="roleOption2">availability from</label>
+                      <div *ngIf="selectedRole===''||selectedRole=='all'">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="options" id="roleOption1" [(ngModel)]="filterType" value="role">
+                          <label class="form-check-label" for="roleOption1">Role</label>
+                        </div>
+                       <!-- <div class="form-check">
+                          <input class="form-check-input" type="radio" name="options" id="roleOption2" [(ngModel)]="filterType" value="from">
+                          <label class="form-check-label" for="roleOption2">availability from</label>
+                        </div> -->
                       </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="options" id="roleOption2" [(ngModel)]="filterType" value="rate">
-                        <label class="form-check-label" for="roleOption2">rate</label>
+                      <div *ngIf="selectedRole==='employee'">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="options" id="roleOption1" [(ngModel)]="filterType" value="role">
+                          <label class="form-check-label" for="roleOption1">Role</label>
+                        </div>
                       </div>
-                      
-                      <!-- Radio buttons for time -->
+                      <div *ngIf="selectedRole==='client'">
+                        
+                      </div>
+                      <!-- choose  minimum Rate  -->
+                      <label class="form-check-label" for="roleOption2">minimum rate:</label>
+                      <ngb-rating [(rate)]="currentRate" [max]="5"></ngb-rating>
+                      <!-- choose minimum number of raters-->
+                      <div class="form-group">
+                        <label for="minNumRater">Minimum number of Raters:</label>
+                        <input type="number" class="form-control" id="minNumRater" [(ngModel)]="numRater" name="minNumRater" min="0">
+                      </div>
                       <!-- Add similar code for time -->
                   
                       <!-- Radio buttons for name -->

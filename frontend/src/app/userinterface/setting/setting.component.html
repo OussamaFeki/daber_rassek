@@ -1,1 +1,26 @@
-<p>setting works!</p>
+<div class="row align-items-center" id="setting1">
+    <div class="col-auto">
+        <label for="inputPassword6" class="col-form-label">Old Password:</label>
+    </div>
+    <div class="col-auto">
+        <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" [(ngModel)]="currentPassword" name="currentPassword" >
+    </div>
+</div>
+<div class="row align-items-center" id="setting">
+    <div class="col-auto">
+      <label for="inputPassword6" class="col-form-label">New Password:</label>
+    </div>
+    <div class="col-auto">
+      <input type="password" id="inputPassword6" class="form-control"  [(ngModel)]="newPassword" name="newPassword" aria-describedby="passwordHelpInline">
+    </div>
+    <div class="col-auto">
+      <span id="passwordHelpInline" class="form-text">
+        Must be 6-20 characters long.
+      </span>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-auto">
+      <button type="button" class="btn btn-primary" (click)="changePassword()">Change Password</button>
+    </div>
+  </div>

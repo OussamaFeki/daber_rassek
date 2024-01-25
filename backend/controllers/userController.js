@@ -339,6 +339,31 @@ const userController = {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   },
+  changePassword: async(req, res)=>{
+    try{
+      const { currentPassword, newPassword } = req.body;
+      const userid = req.user;
+      const user=await User.findById(userid);
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+    const passwordMatch = await bcrypt.compare(currentPassword, user.password);
+    if (!passwordMatch) {
+      return res.status(401).json({ error: 'Invalid current password' });
+    }
+      // Hash the new password
+    const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+
+    // Update the user's password in the database
+    user.password = hashedNewPassword;
+    await user.save();
+
+    return res.json({ message: 'Password changed successfully' });
+    } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+  }
 };
 
  
