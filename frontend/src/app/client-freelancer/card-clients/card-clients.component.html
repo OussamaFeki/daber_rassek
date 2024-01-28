@@ -40,8 +40,9 @@
                           </span>.
                         </ng-container>
                         <ng-template #noNeeds>N/A.</ng-template>
-                        For more information and reservation, call me on {{ user.phone|| 'N/A' }}.
-                      </p>
+                        I am located in {{ user.city || 'N/A' }}.
+                        For more information and reservation, call me on {{ user.phone || 'N/A' }}.
+                      </p>                      
                     </div>
                     <ng-template #content let-modal class="notStyled">
                       <div class="modal-header">

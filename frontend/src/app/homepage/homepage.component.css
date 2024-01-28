@@ -20,10 +20,11 @@ nav {
 button {
   background-color: #3E8243; /* Button background color */
   border: none;
-  margin-right: 0px;
+  float: right;
+  margin-right:7px;
   margin-left: auto;
   position: relative;
-  margin-top: 3px;
+  margin-top: 15px;
 
 }
 a{
@@ -92,7 +93,7 @@ color: #3E8243;
   width: 60px; /* Ajustez la taille de l'image 1 */
   height:55px;
   position: relative;
-   margin-right: 90%;
+  /* margin-right: 90%; */
 }
 
 

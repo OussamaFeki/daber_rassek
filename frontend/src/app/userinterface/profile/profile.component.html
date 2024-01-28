@@ -77,8 +77,9 @@
           </span>.
         </ng-container>
         <ng-template #noNeeds>N/A.</ng-template>
-        For more information and reservation, call me on {{ freelancerCard.phone|| 'N/A' }}.
-      </p>
+        I am located in {{ freelancerCard.city || 'N/A' }}.
+        For more information and reservation, call me on {{ freelancerCard.phone || 'N/A' }}.
+      </p>      
     </div>
   </div>
   <div class="container-fluid card-container" *ngIf="!(freelancerCard.needs.length > 0)" id="not" routerLink="/addclientcard">
